@@ -207,9 +207,19 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 
 			final VectorClock cv = ts_get_cv_hb(td);
 			if (fae.isWrite()) {
+				synchronized (mylog) {
+					mylog.println(currentThread.getTid() + ",AWRITE," +  p.Identity + "," +  fae.getAccessInfo().getLoc());
+				//mylog.println("WRITE,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
+					mylog.flush();
+				}
 				p.rd.max(get(currentThread));
 				tick(td); 			
 			} else {
+				synchronized (mylog) {
+					mylog.println(currentThread.getTid() + ",AREAD," +  p.Identity + "," +  fae.getAccessInfo().getLoc());
+				//mylog.println("WRITE,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
+					mylog.flush();
+				}
 				synchronized(p.rd) {
 					get(currentThread).max(p.rd);
 				}
@@ -358,6 +368,10 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 	@Override
 	public void preNotify(NotifyEvent we) {
 		tick(we.getThread());
+		synchronized (mylog) {
+			mylog.println(we.getThread().getTid() + ",SIGNALNOTIFY," + we.getLock().hashCode() + ",nil");
+			mylog.flush();
+		}
 		synchronized(we.getLock()) {
 			get(we.getLock()).max(get(we.getThread()));
 		}
@@ -368,6 +382,10 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 	@Override
 	public void preWait(WaitEvent we) {
 		tick(we.getThread());
+		synchronized (mylog) {
+			mylog.println(we.getThread().getTid() + ",WAITNOTIFY," + we.getLock().hashCode() + ",nil");
+			mylog.flush();
+		}
 		synchronized(we.getLock()) {
 			get(we.getLock()).max(get(we.getThread()));
 		}
@@ -389,6 +407,12 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 	public void postJoin(JoinEvent je) { 
 		final ShadowThread currentThread = je.getThread();
 		final ShadowThread joinedThread = je.getJoiningThread();
+
+		synchronized (mylog) {
+			mylog.println(currentThread.getTid() + ",SIGNALJOIN," + joinedThread.getTid() + ",nil");
+			mylog.println(joinedThread.getTid() + ",WAITJOIN," + currentThread.getTid() + ",nil");
+			mylog.flush();
+		}
 
 		tick(currentThread);
 		get(currentThread).max(get(joinedThread));
