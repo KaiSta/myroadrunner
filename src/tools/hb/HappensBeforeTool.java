@@ -118,6 +118,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 
 	}
 
+
 	/* 
 	 * Special methods that tells the instrumentor to create a field in ShadowThread
 	 * named "hb" of type "VectorClock".  This is for performance only -- you could do the same
@@ -163,9 +164,10 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		final ShadowThread currentThread = ae.getThread();
 		final ShadowLock shadowLock = ae.getLock();
 
+	
 		synchronized (mylog) {
-		mylog.println("LOCK,T " +  currentThread.getTid() + ",VAR " +  shadowLock.hashCode());
-		mylog.flush();
+			mylog.println(currentThread.getTid() + ",LOCK," +  shadowLock.hashCode() + ",nil");
+			mylog.flush();
 		}
 
 		tick(currentThread);
@@ -181,7 +183,8 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		final ShadowLock shadowLock = re.getLock();
 
 		synchronized (mylog) {
-		mylog.println("UNLOCK,T " +  currentThread.getTid() + ",VAR " +  shadowLock.hashCode());
+		//mylog.println("UNLOCK,T " +  currentThread.getTid() + ",VAR " +  shadowLock.hashCode());
+		mylog.println(currentThread.getTid() + ",UNLOCK," +  shadowLock.hashCode() + ",nil");
 		mylog.flush();
 		}
 
@@ -236,8 +239,9 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 			Object target = fae.getTarget();
 			if (isWrite) {
 				synchronized (mylog) {
-				mylog.println("WRITE,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
-				mylog.flush();
+					mylog.println(currentThread.getTid() + ",WRITE," +  p.Identity + "," +  fae.getAccessInfo().getLoc());
+				//mylog.println("WRITE,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
+					mylog.flush();
 				}
 				// check after prev read
 				passAlong |= checkAfter(p.rd, "read", currentThread, "write", fae, true, p);
@@ -249,8 +253,9 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
  
 			} else {
 				synchronized (mylog) {
-				mylog.println("READ,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
-				mylog.flush();
+					mylog.println(currentThread.getTid() + ",READ," +  p.Identity + "," +  fae.getAccessInfo().getLoc());
+				//mylog.println("READ,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
+					mylog.flush();
 				}
 				// check after prev write
 				passAlong |= checkAfter(p.wr, "write", currentThread, "read", fae, true, p);
@@ -337,8 +342,8 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		final ShadowThread forked = se.getNewThread();
 
 		synchronized (mylog) {
-			mylog.println("SIGNAL,T " +  td.getTid() + ",VAR " + forked.getTid() );
-			mylog.println("WAIT,T " + forked.getTid() + ",VAR " +  td.getTid());
+			mylog.println(td.getTid() + ",SIGNAL," + forked.getTid() + ",nil");
+			mylog.println(forked.getTid() + ",WAIT," + td.getTid() + ",nil");
 			mylog.flush();
 		}
 
