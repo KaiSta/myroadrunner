@@ -38,14 +38,27 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package test;
 
+
 public class Test extends Thread{
 
-    static final int ITERS = 100;
+    static final int ITERS = 2;
 
 	static int y;
+	static int x;
+	static int v;
+
+	static Integer n = new Integer(0);
+	static Integer m = new Integer(0);
 
     public void inc() {
-	y++;
+	synchronized (m) {
+		y++;
+	}
+	//int yy = y + 1;
+	synchronized (n) {
+		x++;
+	}
+	//int xx = x  + 1;
     }
 
 	@Override
@@ -58,10 +71,13 @@ public class Test extends Thread{
 	public static void main(String args[]) throws Exception {
 		final Test t1 = new Test();
 		final Test t2 = new Test();
+		final Test t3 = new Test();
 		t1.start();
 		t2.start();
+		t3.start();
 		t1.join();
 		t2.join();
-		System.out.println("Is it " + (ITERS * 2) + "? " + y);
+		t3.join();
+		System.out.println("Is it " + (ITERS * 3) + "? " + y);
 	}
 }

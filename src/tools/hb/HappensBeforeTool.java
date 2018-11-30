@@ -38,7 +38,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package tools.hb;
 
+import java.io.PrintWriter;
 import java.util.Vector;
+import java.util.concurrent.SynchronousQueue;
 
 import rr.annotations.Abbrev;
 import rr.barrier.BarrierEvent;
@@ -91,6 +93,9 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 	public final ErrorMessage<FieldInfo> errors = ErrorMessages.makeFieldErrorMessage("HappensBefore");
 	public final ErrorMessage<ArrayAccessInfo> arrayErrors = ErrorMessages.makeArrayErrorMessage("HappensBefore");
 
+	// my stuff
+	private PrintWriter mylog; 
+
 	public HappensBeforeTool(String name, Tool next, CommandLine commandLine) {
 		super(name, next, commandLine); 
 
@@ -104,6 +109,12 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 				return new HBBarrierState(ShadowLock.get(k));
 			}
 		});
+
+		try {
+			mylog = new PrintWriter("my.log", "UTF-8");
+		} catch (Exception e) {
+			System.out.println("fuuu off!");
+		}
 
 	}
 
@@ -152,6 +163,11 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		final ShadowThread currentThread = ae.getThread();
 		final ShadowLock shadowLock = ae.getLock();
 
+		synchronized (mylog) {
+		mylog.println("LOCK,T " +  currentThread.getTid() + ",VAR " +  shadowLock.hashCode());
+		mylog.flush();
+		}
+
 		tick(currentThread);
 		synchronized(shadowLock) {
 			get(currentThread).max(get(shadowLock));
@@ -163,6 +179,12 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 	public void release(ReleaseEvent re) {
 		final ShadowThread currentThread = re.getThread();
 		final ShadowLock shadowLock = re.getLock();
+
+		synchronized (mylog) {
+		mylog.println("UNLOCK,T " +  currentThread.getTid() + ",VAR " +  shadowLock.hashCode());
+		mylog.flush();
+		}
+
 		synchronized(shadowLock) {
 			get(shadowLock).copy(get(currentThread));
 		}
@@ -211,8 +233,12 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 //			Util.log("p=" + p);
 //			Util.log("t=" + cv);
 			final int tid = currentThread.getTid();
+			Object target = fae.getTarget();
 			if (isWrite) {
-
+				synchronized (mylog) {
+				mylog.println("WRITE,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
+				mylog.flush();
+				}
 				// check after prev read
 				passAlong |= checkAfter(p.rd, "read", currentThread, "write", fae, true, p);
 				// check after prev write
@@ -222,7 +248,10 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 				}
  
 			} else {
-
+				synchronized (mylog) {
+				mylog.println("READ,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
+				mylog.flush();
+				}
 				// check after prev write
 				passAlong |= checkAfter(p.wr, "write", currentThread, "read", fae, true, p);
 				synchronized(p.rd) { 	
@@ -289,10 +318,16 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		}
 	}
 
+	private Integer identitycounter = new Integer(0);
 
 	@Override
 	public ShadowVar makeShadowVar(AccessEvent fae) {
-		return new VectorClockPair();
+		VectorClockPair v = new VectorClockPair();
+		synchronized (identitycounter) {
+			identitycounter++;
+			v.Identity = identitycounter;
+		}
+		return v;
 	}
 
 	@Override
@@ -300,6 +335,12 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 
 		final ShadowThread td = se.getThread();
 		final ShadowThread forked = se.getNewThread();
+
+		synchronized (mylog) {
+			mylog.println("SIGNAL,T " +  td.getTid() + ",VAR " + forked.getTid() );
+			mylog.println("WAIT,T " + forked.getTid() + ",VAR " +  td.getTid());
+			mylog.flush();
+		}
 
 		ts_set_cv_hb(forked, new VectorClock(ts_get_cv_hb(td)));
 
