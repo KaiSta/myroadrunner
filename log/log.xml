@@ -1,9 +1,9 @@
 <entry>
-  <date> Tue Dec 04 16:31:44 CET 2018 </date> 
+  <date> Wed Dec 19 12:09:21 CET 2018 </date> 
   <mode> FAST </mode> 
   <timeout> NO </timeout> 
   <options>
-    <option><name> javaArgs </name>           <value> test.Test  </value> </option>
+    <option><name> javaArgs </name>           <value> test.Test2  </value> </option>
     <option><name> noDecInline </name>        <value> false </value> </option>
     <option><name> quiet </name>              <value> false </value> </option>
     <option><name> logDepth </name>           <value> 100 </value> </option>
@@ -83,14 +83,14 @@
     <name> user.dir </name>            <value> /home/kai/javastuff/RoadRunner </value> 
     <availableProcs> 2 </availableProcs> 
     <memCommitted> 982 </memCommitted> 
-    <memUsed> 98 </memUsed> 
+    <memUsed> 88 </memUsed> 
     <memTotal> 982 </memTotal> 
-    <compileTime> 1214 </compileTime> 
+    <compileTime> 1246 </compileTime> 
     <gc> <name> PS Scavenge </name> <time> 0 </time> </gc>
     <gc> <name> PS MarkSweep </name> <time> 0 </time> </gc>
   </system>
-  <instrumented> test/Test  </instrumented> 
-  <instrumentedNum> 1 </instrumentedNum> 
+  <instrumented> test/Test2 test/Test2$Test3  </instrumented> 
+  <instrumentedNum> 2 </instrumentedNum> 
   <skipped>  </skipped> 
   <skippedNum> 0 </skippedNum> 
   <sanityChecked>  </sanityChecked> 
@@ -109,13 +109,13 @@
 
     <counter><name> "ShadowLock: objects" </name>                        <value> 0 </value> </counter>
 
-    <counter><name> "ShadowThread: Count" </name>                        <value> 4 </value> </counter>
-    <counter><name> "ShadowThread: Max Live" </name>                     <value> 4 </value> </counter>
+    <counter><name> "ShadowThread: Count" </name>                        <value> 3 </value> </counter>
+    <counter><name> "ShadowThread: Max Live" </name>                     <value> 3 </value> </counter>
     <counter><name> "ShadowThread: getCurrentThread() calls" </name>     <value> 0 </value> </counter>
 
-    <counter><name> "Time: Instrumenter" </name>                         <value> <total>40.0000</total> <count>1</count> <ave>40.0000</ave> </value> </counter>
+    <counter><name> "Time: Instrumenter" </name>                         <value> <total>28.0000</total> <count>2</count> <ave>14.0000</ave> </value> </counter>
 
-    <counter><name> "VectorClock: Pair Objects" </name>                  <value> 4 </value> </counter>
+    <counter><name> "VectorClock: Pair Objects" </name>                  <value> 3 </value> </counter>
   </counters>
   <yikes>
   </yikes>
@@ -125,8 +125,8 @@
   <tool>
     <name> Last </name> 
   </tool>
-  <threadCount> 4 </threadCount> 
-  <threadMaxActive> 4 </threadMaxActive> 
+  <threadCount> 3 </threadCount> 
+  <threadMaxActive> 3 </threadMaxActive> 
   <errorTotal> 0 </errorTotal> 
   <distinctErrorTotal> 0 </distinctErrorTotal> 
   <methods>
@@ -145,5 +145,5 @@
   <yikesTotal> 0 </yikesTotal> 
   <failed> false </failed> 
   <failedReason>  </failedReason> 
-  <time> 701 </time> 
+  <time> 2762 </time> 
 </entry>
