@@ -1,9 +1,9 @@
 <entry>
-  <date> Wed Dec 19 12:09:21 CET 2018 </date> 
+  <date> Thu Jan 10 15:58:37 CET 2019 </date> 
   <mode> FAST </mode> 
   <timeout> NO </timeout> 
   <options>
-    <option><name> javaArgs </name>           <value> test.Test2  </value> </option>
+    <option><name> javaArgs </name>           <value> test.Test3  </value> </option>
     <option><name> noDecInline </name>        <value> false </value> </option>
     <option><name> quiet </name>              <value> false </value> </option>
     <option><name> logDepth </name>           <value> 100 </value> </option>
@@ -36,7 +36,7 @@
     <option><name> maxTid </name>             <value> 16 </value> </option>
     <option><name> stacks </name>             <value> false </value> </option>
     <option><name> values </name>             <value> false </value> </option>
-    <option><name> noTidGC </name>            <value> true </value> </option>
+    <option><name> noTidGC </name>            <value> false </value> </option>
     <option><name> noEventReuse </name>       <value> false </value> </option>
     <option><name> trackMemoryUsage </name>   <value> false </value> </option>
     <option><name> repository </name>         <value>  </value>   </option>
@@ -83,14 +83,14 @@
     <name> user.dir </name>            <value> /home/kai/javastuff/RoadRunner </value> 
     <availableProcs> 2 </availableProcs> 
     <memCommitted> 982 </memCommitted> 
-    <memUsed> 88 </memUsed> 
+    <memUsed> 103 </memUsed> 
     <memTotal> 982 </memTotal> 
-    <compileTime> 1246 </compileTime> 
+    <compileTime> 1406 </compileTime> 
     <gc> <name> PS Scavenge </name> <time> 0 </time> </gc>
     <gc> <name> PS MarkSweep </name> <time> 0 </time> </gc>
   </system>
-  <instrumented> test/Test2 test/Test2$Test3  </instrumented> 
-  <instrumentedNum> 2 </instrumentedNum> 
+  <instrumented> test/Test3 test/Test3$Test4 test/Test3$Test5  </instrumented> 
+  <instrumentedNum> 3 </instrumentedNum> 
   <skipped>  </skipped> 
   <skippedNum> 0 </skippedNum> 
   <sanityChecked>  </sanityChecked> 
@@ -109,13 +109,13 @@
 
     <counter><name> "ShadowLock: objects" </name>                        <value> 0 </value> </counter>
 
-    <counter><name> "ShadowThread: Count" </name>                        <value> 3 </value> </counter>
+    <counter><name> "ShadowThread: Count" </name>                        <value> 4 </value> </counter>
     <counter><name> "ShadowThread: Max Live" </name>                     <value> 3 </value> </counter>
     <counter><name> "ShadowThread: getCurrentThread() calls" </name>     <value> 0 </value> </counter>
 
-    <counter><name> "Time: Instrumenter" </name>                         <value> <total>28.0000</total> <count>2</count> <ave>14.0000</ave> </value> </counter>
+    <counter><name> "Time: Instrumenter" </name>                         <value> <total>39.0000</total> <count>3</count> <ave>13.0000</ave> </value> </counter>
 
-    <counter><name> "VectorClock: Pair Objects" </name>                  <value> 3 </value> </counter>
+    <counter><name> "VectorClock: Pair Objects" </name>                  <value> 4 </value> </counter>
   </counters>
   <yikes>
   </yikes>
@@ -125,13 +125,21 @@
   <tool>
     <name> Last </name> 
   </tool>
-  <threadCount> 3 </threadCount> 
+  <threadCount> 4 </threadCount> 
   <threadMaxActive> 3 </threadMaxActive> 
-  <errorTotal> 0 </errorTotal> 
-  <distinctErrorTotal> 0 </distinctErrorTotal> 
+  <errorTotal> 2 </errorTotal> 
+  <distinctErrorTotal> 2 </distinctErrorTotal> 
   <methods>
   </methods>
   <fields>
+    <field>
+      <name> test/Test3.x_I </name> 
+      <error> <name> HappensBefore </name> <count> 1 </count> </error>
+    </field>
+    <field>
+      <name> test/Test3.z_I </name> 
+      <error> <name> HappensBefore </name> <count> 1 </count> </error>
+    </field>
   </fields>
   <arrays>
   </arrays>
@@ -140,10 +148,11 @@
   <fieldAccesses>
   </fieldAccesses>
   <errorCountPerErrorType>
+    <errorType> <name> HappensBefore </name> <count> 2 </count> </errorType>
   </errorCountPerErrorType>
   <warningsTotal> 0 </warningsTotal> 
   <yikesTotal> 0 </yikesTotal> 
   <failed> false </failed> 
   <failedReason>  </failedReason> 
-  <time> 2762 </time> 
+  <time> 5775 </time> 
 </entry>
