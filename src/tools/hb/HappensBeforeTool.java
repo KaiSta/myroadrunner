@@ -362,8 +362,8 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 
 		synchronized (mylog) {
 			int id  = idgen.nextInt(999999);
-			mylog.println((td.getTid()+1) + ",SIGNAL," + id + ",nil,0");
-			mylog.println((forked.getTid()+1) + ",WAIT," + id + ",nil,0");
+			mylog.println((td.getTid()+1) + ",SIGNAL," + id + ",nil," + id);
+			mylog.println((forked.getTid()+1) + ",WAIT," + id + ",nil," + id);
 			mylog.flush();
 		}
 
@@ -379,7 +379,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 	public void preNotify(NotifyEvent we) {
 		tick(we.getThread());
 		synchronized (mylog) {
-			mylog.println((we.getThread().getTid()+1) + ",SIGNALNOTIFY," + we.getLock().hashCode() + ",nil,0");
+			mylog.println((we.getThread().getTid()+1) + ",SIGNALNOTIFY," + we.getLock().hashCode() + ",nil," + we.getLock().hashCode());
 			mylog.flush();
 		}
 		synchronized(we.getLock()) {
@@ -393,7 +393,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 	public void preWait(WaitEvent we) {
 		tick(we.getThread());
 		synchronized (mylog) {
-			mylog.println((we.getThread().getTid()+1) + ",WAITNOTIFY," + we.getLock().hashCode() + ",nil,0");
+			mylog.println((we.getThread().getTid()+1) + ",WAITNOTIFY," + we.getLock().hashCode() + ",nil," + we.getLock().hashCode());
 			mylog.flush();
 		}
 		synchronized(we.getLock()) {
@@ -420,8 +420,8 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 
 		synchronized (mylog) {
 			int id  = idgen.nextInt(999999);
-			mylog.println((currentThread.getTid()+1) + ",WAITJOIN," + id + ",nil,0");
-			mylog.println((joinedThread.getTid()+1) + ",SIGNALJOIN," + id + ",nil,0");
+			mylog.println((currentThread.getTid()+1) + ",WAITJOIN," + id + ",nil," + id);
+			mylog.println((joinedThread.getTid()+1) + ",SIGNALJOIN," + id + ",nil," + id);
 			mylog.flush();
 		}
 
