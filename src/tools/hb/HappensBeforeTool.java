@@ -172,6 +172,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		synchronized (mylog) {
 			++LockCounter;
 			mylog.println((currentThread.getTid()+1) + ",LOCK," +  (shadowLock.hashCode()+1) + ",nil," + LockCounter);
+			mylog.println((currentThread.getTid()+1) + ",LOCK," +  (shadowLock.hashCode()+1) + ",nil," + LockCounter);
 			mylog.flush();
 		}
 
@@ -189,6 +190,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 
 		synchronized (mylog) {
 		//mylog.println("UNLOCK,T " +  currentThread.getTid() + ",VAR " +  shadowLock.hashCode());
+		mylog.println((currentThread.getTid()+1) + ",UNLOCK," +  (shadowLock.hashCode()+1) + ",nil,0");
 		mylog.println((currentThread.getTid()+1) + ",UNLOCK," +  (shadowLock.hashCode()+1) + ",nil,0");
 		mylog.flush();
 		}
