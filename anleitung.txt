@@ -1,0 +1,18 @@
+eigenes programm laufen lassen zum testen:
+rrrun -classpath=bubble.jar -quiet -maxWarn=1 -tool=HB examples.bubblesort.BubbleSort
+
+program bauen:
+1.
+javac -d ./build/ *.java
+
+2.
+jar cvfm bubble.jar manifest.mf *
+
+mit manifest.mf = 
+
+Manifest-version: 1.0
+Main-Class: examples.bubblesort.BubbleSort  
+
+Main-Class muss auf die klasse verweisen in der die main funktion drin steckt, genauer package pfad noetig!
+
+ 
