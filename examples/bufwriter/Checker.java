@@ -40,6 +40,7 @@ public class Checker extends Thread{
 	    try
 	    {
 	      int res = _buf._count - (getWrittenCount()+_buf._pos);
+System.out.println("bla " + _buf._count);
 	      System.out.print("<BufWriter,"+res+",");
 	      
 	      //outStream.writeChars("<BufWriter,");

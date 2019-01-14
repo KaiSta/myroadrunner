@@ -20,7 +20,7 @@ public class Account {
 
 	// The number of accounts is randomly chosen from [10,110]
 	// int NUM_ACCOUNTS = Math.abs((Bank_random.nextInt()%10 + 1)*10);
-	int NUM_ACCOUNTS = 2;
+	int NUM_ACCOUNTS = 10;
 
 	/*
 	 * Method main creates all the accounts from which the Bank accepts requests

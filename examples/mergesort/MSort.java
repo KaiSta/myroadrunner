@@ -46,6 +46,7 @@ public class MSort extends Thread
         public static synchronized int AvailableThreadsState()//0 - No threads,1 - 1 thread available,2 - 2 threads avilable
         {
                 int availableThreads=m_iThreadLimit - m_iCurrentThreadsAlive;
+		System.out.println(m_iThreadLimit + "," + m_iCurrentThreadsAlive);
                 if ((availableThreads)==0)
                     {
                         return 0;
