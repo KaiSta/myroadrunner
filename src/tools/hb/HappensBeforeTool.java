@@ -346,28 +346,28 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 	}
 	
 	public static boolean readFastPath(final ShadowVar shadow, final ShadowThread st) {
-		return false
-		System.out.println(">>>>>>>>>>>>>>>" + st.getTid()+ "--" + shadow.getClass().getName());
-		System.out.println(">>>>>>>>>>>>>>>" +shadow.toString());
+		return false;
+//		System.out.println(">>>>>>>>>>>>>>>" + st.getTid()+ "--" + shadow.getClass().getName());
+//		System.out.println(">>>>>>>>>>>>>>>" +shadow.toString());
 		
-		if (shadow instanceof VectorClockPair) {
-			VectorClockPair p = (VectorClockPair)shadow;
-			System.out.println(p.Identity);
-		}
-		return true;
+//		if (shadow instanceof VectorClockPair) {
+//			VectorClockPair p = (VectorClockPair)shadow;
+//			System.out.println(p.Identity);
+//		}
+//		return true;
 	}
 	
 	public static boolean writeFastPath(final ShadowVar shadow, final ShadowThread st) {
-		return false
-		System.out.println(">>>>>>>>>>>>>>>" +st.getTid() + "--" + shadow.getClass().getName());
-		System.out.println(">>>>>>>>>>>>>>>" +shadow.toString());
+		return false;
+//		System.out.println(">>>>>>>>>>>>>>>" +st.getTid() + "--" + shadow.getClass().getName());
+//		System.out.println(">>>>>>>>>>>>>>>" +shadow.toString());
 		
-		if (shadow instanceof VectorClockPair) {
-			VectorClockPair p = (VectorClockPair)shadow;
-			System.out.println(p.Identity);
-		}
+//		if (shadow instanceof VectorClockPair) {
+//			VectorClockPair p = (VectorClockPair)shadow;
+//			System.out.println(p.Identity);
+//		}
 		
-		return true;
+//		return true;
 	}
 
 
