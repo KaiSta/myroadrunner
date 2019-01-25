@@ -95,7 +95,8 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 	public final ErrorMessage<ArrayAccessInfo> arrayErrors = ErrorMessages.makeArrayErrorMessage("HappensBefore");
 
 	// my stuff
-	private PrintWriter mylog; 
+	//private PrintWriter mylog; 
+	BufferedWriter mylog = new BufferedWriter(new FileWriter(file), 32768);
 	private Integer AccessCounter = new Integer(0);
 	private Integer LockCounter  = new Integer(0);
 	private Random idgen = new Random(); 
@@ -173,7 +174,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 			++LockCounter;
 			mylog.println((currentThread.getTid()+1) + ",LOCK," +  (shadowLock.hashCode()+1) + ",nil," + LockCounter);
 			mylog.println((currentThread.getTid()+1) + ",LOCK," +  (shadowLock.hashCode()+1) + ",nil," + LockCounter);
-			mylog.flush();
+			//mylog.flush();
 		}
 
 		tick(currentThread);
@@ -192,7 +193,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		//mylog.println("UNLOCK,T " +  currentThread.getTid() + ",VAR " +  shadowLock.hashCode());
 		mylog.println((currentThread.getTid()+1) + ",UNLOCK," +  (shadowLock.hashCode()+1) + ",nil,0");
 		mylog.println((currentThread.getTid()+1) + ",UNLOCK," +  (shadowLock.hashCode()+1) + ",nil,0");
-		mylog.flush();
+		//mylog.flush();
 		}
 
 		synchronized(shadowLock) {
@@ -218,7 +219,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 					++AccessCounter;
 					mylog.println((currentThread.getTid()+1) + ",AWRITE," +  p.Identity + "," +  fae.getAccessInfo().getLoc() + "," + AccessCounter);
 				//mylog.println("WRITE,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
-					mylog.flush();
+					//mylog.flush();
 				}
 				p.rd.max(get(currentThread));
 				tick(td); 			
@@ -227,7 +228,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 					++AccessCounter;
 					mylog.println((currentThread.getTid()+1) + ",AREAD," +  p.Identity + "," +  fae.getAccessInfo().getLoc() + "," + AccessCounter);
 				//mylog.println("WRITE,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
-					mylog.flush();
+					//mylog.flush();
 				}
 				synchronized(p.rd) {
 					get(currentThread).max(p.rd);
@@ -261,7 +262,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 					++AccessCounter;
 					mylog.println((currentThread.getTid()+1) + ",WRITE," +  p.Identity + "," +  fae.getAccessInfo().getLoc() + "," + AccessCounter);
 				//mylog.println("WRITE,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
-					mylog.flush();
+					//mylog.flush();
 				}
 				// check after prev read
 				passAlong |= checkAfter(p.rd, "read", currentThread, "write", fae, true, p);
@@ -276,7 +277,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 					++AccessCounter;
 					mylog.println((currentThread.getTid()+1) + ",READ," +  p.Identity + "," +  fae.getAccessInfo().getLoc() + "," + AccessCounter);
 				//mylog.println("READ,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
-					mylog.flush();
+					//mylog.flush();
 				}
 				// check after prev write
 				passAlong |= checkAfter(p.wr, "write", currentThread, "read", fae, true, p);
@@ -366,7 +367,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 			int id  = idgen.nextInt(999999);
 			mylog.println((td.getTid()+1) + ",SIGNAL," + id + ",nil," + id);
 			mylog.println((forked.getTid()+1) + ",WAIT," + id + ",nil," + id);
-			mylog.flush();
+			//mylog.flush();
 		}
 
 		ts_set_cv_hb(forked, new VectorClock(ts_get_cv_hb(td)));
@@ -382,7 +383,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		tick(we.getThread());
 		synchronized (mylog) {
 			mylog.println((we.getThread().getTid()+1) + ",SIGNALNOTIFY," + we.getLock().hashCode() + ",nil," + we.getLock().hashCode());
-			mylog.flush();
+			//mylog.flush();
 		}
 		synchronized(we.getLock()) {
 			get(we.getLock()).max(get(we.getThread()));
@@ -396,7 +397,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		tick(we.getThread());
 		synchronized (mylog) {
 			mylog.println((we.getThread().getTid()+1) + ",WAITNOTIFY," + we.getLock().hashCode() + ",nil," + we.getLock().hashCode());
-			mylog.flush();
+			//mylog.flush();
 		}
 		synchronized(we.getLock()) {
 			get(we.getLock()).max(get(we.getThread()));
@@ -424,7 +425,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 			int id  = idgen.nextInt(999999);
 			mylog.println((currentThread.getTid()+1) + ",WAITJOIN," + id + ",nil," + id);
 			mylog.println((joinedThread.getTid()+1) + ",SIGNALJOIN," + id + ",nil," + id);
-			mylog.flush();
+			//mylog.flush();
 		}
 
 		tick(currentThread);
@@ -487,7 +488,8 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 
 	@Override
 	public void stop(ShadowThread st) {
-		System.out.println("BLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+		System.out.println("BLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		mylog.flush()
 		//synchronized (maxEpochPerTid) {
 		//	maxEpochPerTid.set(st.getTid(), ts_get_E(st));
 		//}
