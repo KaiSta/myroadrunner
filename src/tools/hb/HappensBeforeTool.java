@@ -346,13 +346,13 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 	}
 	
 	public static boolean readFastPath(final ShadowVar shadow, final ShadowThread st) {
-		System.out.println(">>>>>>>>>>>>>>>" + st.getTid());
+		System.out.println(">>>>>>>>>>>>>>>" + st.getTid()+ "--" + shadow.getClass().getName());
 		System.out.println(">>>>>>>>>>>>>>>" +shadow.toString());
 		return true;
 	}
 	
 	public static boolean writeFastPath(final ShadowVar shadow, final ShadowThread st) {
-		System.out.println(">>>>>>>>>>>>>>>" +st.getTid());
+		System.out.println(">>>>>>>>>>>>>>>" +st.getTid() + "--" + shadow.getClass().getName());
 		System.out.println(">>>>>>>>>>>>>>>" +shadow.toString());
 		return true;
 	}
@@ -565,7 +565,6 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 
 	@Override
 	public void stop(ShadowThread st) {
-		System.out.println("BLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 		try {
 			mylog.flush();
 			
