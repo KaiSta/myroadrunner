@@ -79,6 +79,8 @@ import acme.util.decorations.DefaultValue;
 import acme.util.decorations.NullDefault;
 import acme.util.option.CommandLine;
 
+import java.io.BufferedWriter;
+
 /**
  * A simple VC-based HappensBefore Race Detector.
  *
