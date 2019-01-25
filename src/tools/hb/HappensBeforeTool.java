@@ -533,7 +533,11 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 	@Override
 	public void stop(ShadowThread st) {
 		System.out.println("BLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		try {
 		mylog.flush();
+		} catch (Exception e) {
+			System.out.println("fuuu off!");
+		}
 		//synchronized (maxEpochPerTid) {
 		//	maxEpochPerTid.set(st.getTid(), ts_get_E(st));
 		//}
