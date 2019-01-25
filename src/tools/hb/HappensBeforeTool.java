@@ -105,7 +105,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 	private Integer LockCounter  = new Integer(0);
 	private Random idgen = new Random(); 
 	private HashMap hm = new HashMap();
-	private int locCount = 0;
+	private Integer locCount = new Integer(0);
 
 	public HappensBeforeTool(String name, Tool next, CommandLine commandLine) {
 		super(name, next, commandLine); 
@@ -229,7 +229,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 			VectorClockPair p = (VectorClockPair)g;
 
 			final VectorClock cv = ts_get_cv_hb(td);
-			int loc = 0;
+			Integer loc = new Integer(0);
 			String s = fae.getAccessInfo().getLoc();
 			if (hm.containsKey(s)) {
 				loc = hm.get(s);
@@ -289,7 +289,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 			final int tid = currentThread.getTid();
 			Object target = fae.getTarget();
 			
-			int loc = 0;
+			Integer loc = new Integer(0);
 			String s = fae.getAccessInfo().getLoc();
 			if (hm.containsKey(s)) {
 				loc = hm.get(s);
