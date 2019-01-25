@@ -1,5 +1,5 @@
 <entry>
-  <date> Mon Jan 14 12:46:37 CET 2019 </date> 
+  <date> Fri Jan 25 13:39:43 UTC 2019 </date> 
   <mode> FAST </mode> 
   <timeout> NO </timeout> 
   <options>
@@ -15,12 +15,12 @@
     <option><name> infThreads </name>         <value> 0 </value>  </option>
     <option><name> benchmark </name>          <value> 0 </value>  </option>
     <option><name> warmup </name>             <value> 3 </value>  </option>
-    <option><name> availableProcessors </name> <value> 2 </value>  </option>
+    <option><name> availableProcessors </name> <value> 8 </value>  </option>
     <option><name> args </name>               <value> [] </value> </option>
     <option><name> d </name>                  <value> [] </value> </option>
     <option><name> maxYikes </name>           <value> 5 </value>  </option>
     <option><name> help </name>               <value> false </value> </option>
-    <option><name> toolpath </name>           <value> /home/kai/javastuff/RoadRunner/classes/rr/simple:/home/kai/javastuff/RoadRunner/classes/tools </value> </option>
+    <option><name> toolpath </name>           <value> /home/kaist/repos/myroadrunner/classes/rr/simple:/home/kaist/repos/myroadrunner/classes/tools </value> </option>
     <option><name> classpath </name>          <value> original.jar </value> </option>
     <option><name> tool </name>               <value> HB </value> </option>
     <option><name> tools </name>              <value> false </value> </option>
@@ -33,10 +33,10 @@
     <option><name> pulse </name>              <value>  </value>   </option>
     <option><name> maxTime </name>            <value> 0 </value>  </option>
     <option><name> maxMem </name>             <value> 10240 </value> </option>
-    <option><name> maxTid </name>             <value> 12 </value> </option>
+    <option><name> maxTid </name>             <value> 14 </value> </option>
     <option><name> stacks </name>             <value> false </value> </option>
     <option><name> values </name>             <value> false </value> </option>
-    <option><name> noTidGC </name>            <value> false </value> </option>
+    <option><name> noTidGC </name>            <value> true </value> </option>
     <option><name> noEventReuse </name>       <value> false </value> </option>
     <option><name> trackMemoryUsage </name>   <value> false </value> </option>
     <option><name> repository </name>         <value>  </value>   </option>
@@ -63,7 +63,7 @@
     <option><name> indices </name>            <value> 2147483647 </value> </option>
     <option><name> updaters </name>           <value> SAFE </value> </option>
     <option><name> array </name>              <value> FINE </value> </option>
-    <option><name> userArray </name>          <value> rr.state.ArrayStateCreator$1@74a14482 </value> </option>
+    <option><name> userArray </name>          <value> rr.state.ArrayStateCreator$1@60e53b93 </value> </option>
     <option><name> nobarrier </name>          <value> false </value> </option>
     <option><name> arrayCacheType </name>     <value> STRONG </value> </option>
     <option><name> callSites </name>          <value> false </value> </option>
@@ -71,37 +71,37 @@
     <option><name> noInterrupt </name>        <value> false </value> </option>
   </options>
   <system>
-    <host> kai-VirtualBox </host> 
+    <host> iwi-i-vm-ks </host> 
     <name> java.vm.version </name>     <value> 25.191-b12 </value> 
     <name> java.vm.vendor </name>      <value> Oracle Corporation </value> 
     <name> java.vm.name </name>        <value> Java HotSpot(TM) 64-Bit Server VM </value> 
-    <name> java.class.path </name>     <value> .:/home/kai/javastuff/RoadRunner/build/jar/rragent.jar </value> 
+    <name> java.class.path </name>     <value> .:/home/kaist/repos/myroadrunner/build/jar/rragent.jar </value> 
     <name> os.name </name>             <value> Linux </value> 
     <name> os.arch </name>             <value> amd64 </value> 
     <name> os.version </name>          <value> 4.15.0-43-generic </value> 
-    <name> user.name </name>           <value> kai </value> 
-    <name> user.dir </name>            <value> /home/kai/javastuff/RoadRunner/benchmarks/lusearch </value> 
-    <availableProcs> 2 </availableProcs> 
-    <memCommitted> 983 </memCommitted> 
-    <memUsed> 272 </memUsed> 
-    <memTotal> 983 </memTotal> 
-    <compileTime> 19098 </compileTime> 
-    <gc> <name> PS Scavenge </name> <time> 835 </time> </gc>
-    <gc> <name> PS MarkSweep </name> <time> 0 </time> </gc>
+    <name> user.name </name>           <value> kaist </value> 
+    <name> user.dir </name>            <value> /home/kaist/repos/myroadrunner/benchmarks/lusearch </value> 
+    <availableProcs> 16 </availableProcs> 
+    <memCommitted> 2110 </memCommitted> 
+    <memUsed> 1671 </memUsed> 
+    <memTotal> 2110 </memTotal> 
+    <compileTime> 19100 </compileTime> 
+    <gc> <name> PS Scavenge </name> <time> 2469 </time> </gc>
+    <gc> <name> PS MarkSweep </name> <time> 570 </time> </gc>
   </system>
-  <instrumented> Main org/apache/lucene/analysis/Analyzer org/apache/lucene/analysis/CharArraySet org/apache/lucene/analysis/CharTokenizer org/apache/lucene/analysis/LetterTokenizer org/apache/lucene/analysis/LowerCaseFilter org/apache/lucene/analysis/LowerCaseTokenizer org/apache/lucene/analysis/SimpleAnalyzer org/apache/lucene/analysis/StopAnalyzer org/apache/lucene/analysis/StopFilter org/apache/lucene/analysis/Token org/apache/lucene/analysis/TokenFilter org/apache/lucene/analysis/TokenStream org/apache/lucene/analysis/Tokenizer org/apache/lucene/analysis/standard/StandardAnalyzer org/apache/lucene/analysis/standard/StandardFilter org/apache/lucene/analysis/standard/StandardTokenizer org/apache/lucene/analysis/standard/StandardTokenizerImpl org/apache/lucene/document/AbstractField org/apache/lucene/document/DateTools$Resolution org/apache/lucene/document/Document org/apache/lucene/document/Field org/apache/lucene/document/Field$Index org/apache/lucene/document/Field$Store org/apache/lucene/document/Field$TermVector org/apache/lucene/document/FieldSelector org/apache/lucene/document/FieldSelectorResult org/apache/lucene/document/Fieldable org/apache/lucene/index/CompoundFileReader org/apache/lucene/index/CompoundFileReader$CSIndexInput org/apache/lucene/index/CompoundFileReader$FileEntry org/apache/lucene/index/CorruptIndexException org/apache/lucene/index/DefaultSkipListReader org/apache/lucene/index/DefaultSkipListWriter org/apache/lucene/index/DirectoryIndexReader org/apache/lucene/index/DirectoryIndexReader$1 org/apache/lucene/index/DirectoryIndexReader$2 org/apache/lucene/index/DirectoryIndexReader$ReaderCommit org/apache/lucene/index/FieldInfo org/apache/lucene/index/FieldInfos org/apache/lucene/index/FieldsReader org/apache/lucene/index/FilterIndexReader org/apache/lucene/index/IndexCommit org/apache/lucene/index/IndexCommitPoint org/apache/lucene/index/IndexDeletionPolicy org/apache/lucene/index/IndexFileNameFilter org/apache/lucene/index/IndexFileNames org/apache/lucene/index/IndexReader org/apache/lucene/index/KeepOnlyLastCommitDeletionPolicy org/apache/lucene/index/MultiLevelSkipListReader org/apache/lucene/index/MultiLevelSkipListWriter org/apache/lucene/index/MultiSegmentReader org/apache/lucene/index/Payload org/apache/lucene/index/ReadOnlyMultiSegmentReader org/apache/lucene/index/ReadOnlySegmentReader org/apache/lucene/index/SegmentInfo org/apache/lucene/index/SegmentInfos org/apache/lucene/index/SegmentInfos$FindSegmentsFile org/apache/lucene/index/SegmentMergeQueue org/apache/lucene/index/SegmentMerger org/apache/lucene/index/SegmentMerger$CheckAbort org/apache/lucene/index/SegmentReader org/apache/lucene/index/SegmentReader$Norm org/apache/lucene/index/SegmentTermDocs org/apache/lucene/index/SegmentTermEnum org/apache/lucene/index/StaleReaderException org/apache/lucene/index/Term org/apache/lucene/index/TermBuffer org/apache/lucene/index/TermDocs org/apache/lucene/index/TermEnum org/apache/lucene/index/TermInfo org/apache/lucene/index/TermInfosReader org/apache/lucene/index/TermInfosReader$ThreadResources org/apache/lucene/index/TermInfosWriter org/apache/lucene/index/TermPositions org/apache/lucene/index/TermVectorsReader org/apache/lucene/queryParser/CharStream org/apache/lucene/queryParser/FastCharStream org/apache/lucene/queryParser/ParseException org/apache/lucene/queryParser/QueryParser org/apache/lucene/queryParser/QueryParser$JJCalls org/apache/lucene/queryParser/QueryParser$LookaheadSuccess org/apache/lucene/queryParser/QueryParser$Operator org/apache/lucene/queryParser/QueryParserConstants org/apache/lucene/queryParser/QueryParserTokenManager org/apache/lucene/queryParser/Token org/apache/lucene/queryParser/TokenMgrError org/apache/lucene/search/BooleanClause org/apache/lucene/search/BooleanClause$Occur org/apache/lucene/search/BooleanQuery org/apache/lucene/search/BooleanQuery$TooManyClauses org/apache/lucene/search/ComplexExplanation org/apache/lucene/search/ConstantScoreRangeQuery org/apache/lucene/search/DefaultSimilarity org/apache/lucene/search/DocIdSetIterator org/apache/lucene/search/Explanation org/apache/lucene/search/FuzzyQuery org/apache/lucene/search/HitCollector org/apache/lucene/search/HitQueue org/apache/lucene/search/IndexSearcher org/apache/lucene/search/MatchAllDocsQuery org/apache/lucene/search/MultiPhraseQuery org/apache/lucene/search/MultiTermQuery org/apache/lucene/search/PhraseQuery org/apache/lucene/search/PrefixQuery org/apache/lucene/search/Query org/apache/lucene/search/RangeQuery org/apache/lucene/search/ScoreDoc org/apache/lucene/search/Scorer org/apache/lucene/search/Searchable org/apache/lucene/search/Searcher org/apache/lucene/search/Similarity org/apache/lucene/search/TermQuery org/apache/lucene/search/TermQuery$TermWeight org/apache/lucene/search/TermScorer org/apache/lucene/search/TopDocCollector org/apache/lucene/search/TopDocs org/apache/lucene/search/TopFieldDocCollector org/apache/lucene/search/Weight org/apache/lucene/search/WildcardQuery org/apache/lucene/store/AlreadyClosedException org/apache/lucene/store/BufferedIndexInput org/apache/lucene/store/BufferedIndexOutput org/apache/lucene/store/ChecksumIndexInput org/apache/lucene/store/ChecksumIndexOutput org/apache/lucene/store/Directory org/apache/lucene/store/FSDirectory org/apache/lucene/store/FSDirectory$FSIndexInput org/apache/lucene/store/FSDirectory$FSIndexInput$Descriptor org/apache/lucene/store/FSDirectory$FSIndexOutput org/apache/lucene/store/IndexInput org/apache/lucene/store/IndexOutput org/apache/lucene/store/Lock org/apache/lucene/store/LockFactory org/apache/lucene/store/LockObtainFailedException org/apache/lucene/store/NoLockFactory org/apache/lucene/store/SimpleFSLock org/apache/lucene/store/SimpleFSLockFactory org/apache/lucene/util/BitVector org/apache/lucene/util/CloseableThreadLocal org/apache/lucene/util/Parameter org/apache/lucene/util/PriorityQueue org/apache/lucene/util/SmallFloat org/apache/lucene/util/ToStringUtils org/apache/lucene/util/UnicodeUtil org/apache/lucene/util/UnicodeUtil$UTF16Result org/apache/lucene/util/UnicodeUtil$UTF8Result org/apache/lucene/util/cache/Cache org/apache/lucene/util/cache/Cache$SynchronizedCache org/apache/lucene/util/cache/SimpleLRUCache org/apache/lucene/util/cache/SimpleLRUCache$1 org/apache/lucene/util/cache/SimpleMapCache org/apache/lucene/util/cache/SimpleMapCache$SynchronizedSimpleMapCache org/dacapo/lusearch/Search org/dacapo/lusearch/Search$OneNormsReader org/dacapo/lusearch/Search$QueryProcessor org/dacapo/lusearch/Search$QueryThread  </instrumented> 
-  <instrumentedNum> 157 </instrumentedNum> 
+  <instrumented> Main org/apache/lucene/analysis/Analyzer org/apache/lucene/analysis/CharArraySet org/apache/lucene/analysis/CharTokenizer org/apache/lucene/analysis/LetterTokenizer org/apache/lucene/analysis/LowerCaseFilter org/apache/lucene/analysis/LowerCaseTokenizer org/apache/lucene/analysis/SimpleAnalyzer org/apache/lucene/analysis/StopAnalyzer org/apache/lucene/analysis/StopFilter org/apache/lucene/analysis/Token org/apache/lucene/analysis/TokenFilter org/apache/lucene/analysis/TokenStream org/apache/lucene/analysis/Tokenizer org/apache/lucene/analysis/standard/StandardAnalyzer org/apache/lucene/analysis/standard/StandardFilter org/apache/lucene/analysis/standard/StandardTokenizer org/apache/lucene/analysis/standard/StandardTokenizerImpl org/apache/lucene/document/AbstractField org/apache/lucene/document/DateTools$Resolution org/apache/lucene/document/Document org/apache/lucene/document/Field org/apache/lucene/document/Field$Index org/apache/lucene/document/Field$Store org/apache/lucene/document/Field$TermVector org/apache/lucene/document/FieldSelector org/apache/lucene/document/FieldSelectorResult org/apache/lucene/document/Fieldable org/apache/lucene/index/CompoundFileReader org/apache/lucene/index/CompoundFileReader$CSIndexInput org/apache/lucene/index/CompoundFileReader$FileEntry org/apache/lucene/index/CorruptIndexException org/apache/lucene/index/DefaultSkipListReader org/apache/lucene/index/DefaultSkipListWriter org/apache/lucene/index/DirectoryIndexReader org/apache/lucene/index/DirectoryIndexReader$1 org/apache/lucene/index/DirectoryIndexReader$2 org/apache/lucene/index/DirectoryIndexReader$ReaderCommit org/apache/lucene/index/FieldInfo org/apache/lucene/index/FieldInfos org/apache/lucene/index/FieldsReader org/apache/lucene/index/FilterIndexReader org/apache/lucene/index/IndexCommit org/apache/lucene/index/IndexCommitPoint org/apache/lucene/index/IndexDeletionPolicy org/apache/lucene/index/IndexFileNameFilter org/apache/lucene/index/IndexFileNames org/apache/lucene/index/IndexReader org/apache/lucene/index/KeepOnlyLastCommitDeletionPolicy org/apache/lucene/index/MultiLevelSkipListReader org/apache/lucene/index/MultiLevelSkipListWriter org/apache/lucene/index/MultiSegmentReader org/apache/lucene/index/Payload org/apache/lucene/index/ReadOnlyMultiSegmentReader org/apache/lucene/index/ReadOnlySegmentReader org/apache/lucene/index/SegmentInfo org/apache/lucene/index/SegmentInfos org/apache/lucene/index/SegmentInfos$FindSegmentsFile org/apache/lucene/index/SegmentMergeQueue org/apache/lucene/index/SegmentMerger org/apache/lucene/index/SegmentMerger$CheckAbort org/apache/lucene/index/SegmentReader org/apache/lucene/index/SegmentReader$Norm org/apache/lucene/index/SegmentTermDocs org/apache/lucene/index/SegmentTermEnum org/apache/lucene/index/StaleReaderException org/apache/lucene/index/Term org/apache/lucene/index/TermBuffer org/apache/lucene/index/TermDocs org/apache/lucene/index/TermEnum org/apache/lucene/index/TermInfo org/apache/lucene/index/TermInfosReader org/apache/lucene/index/TermInfosReader$ThreadResources org/apache/lucene/index/TermInfosWriter org/apache/lucene/index/TermPositions org/apache/lucene/index/TermVectorsReader org/apache/lucene/queryParser/CharStream org/apache/lucene/queryParser/FastCharStream org/apache/lucene/queryParser/ParseException org/apache/lucene/queryParser/QueryParser org/apache/lucene/queryParser/QueryParser$JJCalls org/apache/lucene/queryParser/QueryParser$LookaheadSuccess org/apache/lucene/queryParser/QueryParser$Operator org/apache/lucene/queryParser/QueryParserConstants org/apache/lucene/queryParser/QueryParserTokenManager org/apache/lucene/queryParser/Token org/apache/lucene/queryParser/TokenMgrError org/apache/lucene/search/BooleanClause org/apache/lucene/search/BooleanClause$Occur org/apache/lucene/search/BooleanQuery org/apache/lucene/search/BooleanQuery$1 org/apache/lucene/search/BooleanQuery$BooleanWeight org/apache/lucene/search/BooleanQuery$TooManyClauses org/apache/lucene/search/BooleanScorer2 org/apache/lucene/search/BooleanScorer2$1 org/apache/lucene/search/BooleanScorer2$2 org/apache/lucene/search/BooleanScorer2$Coordinator org/apache/lucene/search/BooleanScorer2$SingleMatchScorer org/apache/lucene/search/ComplexExplanation org/apache/lucene/search/ConjunctionScorer org/apache/lucene/search/ConstantScoreRangeQuery org/apache/lucene/search/DefaultSimilarity org/apache/lucene/search/DisjunctionSumScorer org/apache/lucene/search/DocIdSetIterator org/apache/lucene/search/Explanation org/apache/lucene/search/Filter org/apache/lucene/search/FuzzyQuery org/apache/lucene/search/HitCollector org/apache/lucene/search/HitQueue org/apache/lucene/search/IndexSearcher org/apache/lucene/search/MatchAllDocsQuery org/apache/lucene/search/MultiPhraseQuery org/apache/lucene/search/MultiTermQuery org/apache/lucene/search/NonMatchingScorer org/apache/lucene/search/PhraseQuery org/apache/lucene/search/PrefixQuery org/apache/lucene/search/Query org/apache/lucene/search/RangeQuery org/apache/lucene/search/ReqExclScorer org/apache/lucene/search/ReqOptSumScorer org/apache/lucene/search/ScoreDoc org/apache/lucene/search/Scorer org/apache/lucene/search/Searchable org/apache/lucene/search/Searcher org/apache/lucene/search/Similarity org/apache/lucene/search/SimilarityDelegator org/apache/lucene/search/TermQuery org/apache/lucene/search/TermQuery$TermWeight org/apache/lucene/search/TermScorer org/apache/lucene/search/TopDocCollector org/apache/lucene/search/TopDocs org/apache/lucene/search/TopFieldDocCollector org/apache/lucene/search/Weight org/apache/lucene/search/WildcardQuery org/apache/lucene/store/AlreadyClosedException org/apache/lucene/store/BufferedIndexInput org/apache/lucene/store/BufferedIndexOutput org/apache/lucene/store/ChecksumIndexInput org/apache/lucene/store/ChecksumIndexOutput org/apache/lucene/store/Directory org/apache/lucene/store/FSDirectory org/apache/lucene/store/FSDirectory$FSIndexInput org/apache/lucene/store/FSDirectory$FSIndexInput$Descriptor org/apache/lucene/store/FSDirectory$FSIndexOutput org/apache/lucene/store/IndexInput org/apache/lucene/store/IndexOutput org/apache/lucene/store/Lock org/apache/lucene/store/LockFactory org/apache/lucene/store/LockObtainFailedException org/apache/lucene/store/NoLockFactory org/apache/lucene/store/SimpleFSLock org/apache/lucene/store/SimpleFSLockFactory org/apache/lucene/util/BitVector org/apache/lucene/util/CloseableThreadLocal org/apache/lucene/util/Parameter org/apache/lucene/util/PriorityQueue org/apache/lucene/util/SmallFloat org/apache/lucene/util/ToStringUtils org/apache/lucene/util/UnicodeUtil org/apache/lucene/util/UnicodeUtil$UTF16Result org/apache/lucene/util/UnicodeUtil$UTF8Result org/apache/lucene/util/cache/Cache org/apache/lucene/util/cache/Cache$SynchronizedCache org/apache/lucene/util/cache/SimpleLRUCache org/apache/lucene/util/cache/SimpleLRUCache$1 org/apache/lucene/util/cache/SimpleMapCache org/apache/lucene/util/cache/SimpleMapCache$SynchronizedSimpleMapCache org/dacapo/lusearch/Search org/dacapo/lusearch/Search$OneNormsReader org/dacapo/lusearch/Search$QueryProcessor org/dacapo/lusearch/Search$QueryThread  </instrumented> 
+  <instrumentedNum> 171 </instrumentedNum> 
   <skipped>  </skipped> 
   <skippedNum> 0 </skippedNum> 
   <sanityChecked>  </sanityChecked> 
   <sanityCheckedNum> 0 </sanityCheckedNum> 
   <counters>
 
-    <counter><name> "ArrayStateFactory: Size" </name>                    <value> 8,695 </value> </counter>
-    <counter><name> "ArrayStateFactory: Attic Move Time" </name>         <value> <total>28.0000</total> <count>3</count> <ave>9.33333</ave> </value> </counter>
-    <counter><name> "ArrayStateFactory: Attic Hits" </name>              <value> 33 </value> </counter>
+    <counter><name> "ArrayStateFactory: Size" </name>                    <value> 86.613 </value> </counter>
+    <counter><name> "ArrayStateFactory: Attic Move Time" </name>         <value> <total>70,0000</total> <count>15</count> <ave>4,66667</ave> </value> </counter>
+    <counter><name> "ArrayStateFactory: Attic Hits" </name>              <value> 631 </value> </counter>
 
-    <counter><name> "Clone: Count" </name>                               <value> 24,643 </value> </counter>
+    <counter><name> "Clone: Count" </name>                               <value> 246.940 </value> </counter>
 
     <counter><name> "GCRunner: Max Usage" </name>                        <value> 0 </value> </counter>
 
@@ -109,18 +109,21 @@
 
     <counter><name> "ShadowLock: objects" </name>                        <value> 0 </value> </counter>
 
-    <counter><name> "ShadowThread: Count" </name>                        <value> 4 </value> </counter>
-    <counter><name> "ShadowThread: Max Live" </name>                     <value> 4 </value> </counter>
+    <counter><name> "ShadowThread: Count" </name>                        <value> 10 </value> </counter>
+    <counter><name> "ShadowThread: Max Live" </name>                     <value> 10 </value> </counter>
     <counter><name> "ShadowThread: getCurrentThread() calls" </name>     <value> 0 </value> </counter>
 
     <counter><name> "ShadowVolatile: objects" </name>                    <value> 0 </value> </counter>
 
-    <counter><name> "Time: Instrumenter" </name>                         <value> <total>1669.00</total> <count>157</count> <ave>10.6306</ave> </value> </counter>
+    <counter><name> "Time: Instrumenter" </name>                         <value> <total>867,000</total> <count>171</count> <ave>5,07018</ave> </value> </counter>
 
-    <counter><name> "VectorClock: Pair Objects" </name>                  <value> 458,189 </value> </counter>
+    <counter><name> "VectorClock: Pair Objects" </name>                  <value> 3.924.769 </value> </counter>
   </counters>
   <yikes>
-    <message> Old Version Number in class file. U </message> <count> 142 </count> 
+    <message> SafeFieldUpdater: Concurrent update </message> <count> 45 </count> 
+    <message> concurrent initialization of guard  </message> <count> 1 </count> 
+    <message> Concurrent class rr.state.ShadowVol </message> <count> 4 </count> 
+    <message> Old Version Number in class file. U </message> <count> 156 </count> 
   </yikes>
   <tool>
     <name> tools.hb.HappensBeforeTool </name> 
@@ -128,10 +131,10 @@
   <tool>
     <name> Last </name> 
   </tool>
-  <threadCount> 4 </threadCount> 
-  <threadMaxActive> 4 </threadMaxActive> 
-  <errorTotal> 27 </errorTotal> 
-  <distinctErrorTotal> 27 </distinctErrorTotal> 
+  <threadCount> 10 </threadCount> 
+  <threadMaxActive> 10 </threadMaxActive> 
+  <errorTotal> 23 </errorTotal> 
+  <distinctErrorTotal> 23 </distinctErrorTotal> 
   <methods>
   </methods>
   <fields>
@@ -164,15 +167,7 @@
       <error> <name> HappensBefore </name> <count> 1 </count> </error>
     </field>
     <field>
-      <name> org/apache/lucene/store/FSDirectory.IMPL_Ljava/lang/Class; </name> 
-      <error> <name> HappensBefore </name> <count> 1 </count> </error>
-    </field>
-    <field>
       <name> org/apache/lucene/analysis/Token.MIN_BUFFER_SIZE_I </name> 
-      <error> <name> HappensBefore </name> <count> 1 </count> </error>
-    </field>
-    <field>
-      <name> org/apache/lucene/store/FSDirectory.disableLocks_Z </name> 
       <error> <name> HappensBefore </name> <count> 1 </count> </error>
     </field>
     <field>
@@ -180,21 +175,13 @@
       <error> <name> HappensBefore </name> <count> 1 </count> </error>
     </field>
     <field>
-      <name> org/apache/lucene/store/FSDirectory.DIGESTER_Ljava/security/MessageDigest; </name> 
+      <name> org/apache/lucene/index/SegmentReader.class$org$apache$lucene$index$SegmentReader_Ljava/lang/Class; </name> 
       <error> <name> HappensBefore </name> <count> 1 </count> </error>
     </field>
   </fields>
   <arrays>
     <target>
       <location> rd_array@org/apache/lucene/queryParser/QueryParserTokenManager.java:1119:183 </location> 
-      <error> <name> HappensBefore </name> <count> 1 </count> </error>
-    </target>
-    <target>
-      <location> rd_array@org/apache/lucene/store/FSDirectory.java:515:100 </location> 
-      <error> <name> HappensBefore </name> <count> 1 </count> </error>
-    </target>
-    <target>
-      <location> rd_array@org/apache/lucene/store/FSDirectory.java:516:114 </location> 
       <error> <name> HappensBefore </name> <count> 1 </count> </error>
     </target>
     <target>
@@ -251,11 +238,11 @@
   <fieldAccesses>
   </fieldAccesses>
   <errorCountPerErrorType>
-    <errorType> <name> HappensBefore </name> <count> 27 </count> </errorType>
+    <errorType> <name> HappensBefore </name> <count> 23 </count> </errorType>
   </errorCountPerErrorType>
   <warningsTotal> 0 </warningsTotal> 
-  <yikesTotal> 142 </yikesTotal> 
+  <yikesTotal> 206 </yikesTotal> 
   <failed> false </failed> 
   <failedReason>  </failedReason> 
-  <time> 80502 </time> 
+  <time> 1468187 </time> 
 </entry>
