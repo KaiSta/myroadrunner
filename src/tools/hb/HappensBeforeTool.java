@@ -230,9 +230,9 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 
 			final VectorClock cv = ts_get_cv_hb(td);
 			Integer loc = new Integer(0);
-			String s = fae.getAccessInfo().getLoc();
+			String s = fae.getAccessInfo().getLoc().toString();
 			if (hm.containsKey(s)) {
-				loc = hm.get(s);
+				loc = (Integer)hm.get(s);
 			} else {
 				loc = ++locCount;
 				hm.put(s, loc);
@@ -290,9 +290,9 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 			Object target = fae.getTarget();
 			
 			Integer loc = new Integer(0);
-			String s = fae.getAccessInfo().getLoc();
+			String s = fae.getAccessInfo().getLoc().toString();
 			if (hm.containsKey(s)) {
-				loc = hm.get(s);
+				loc = (Integer)hm.get(s);
 			} else {
 				loc = ++locCount;
 				hm.put(s, loc);
