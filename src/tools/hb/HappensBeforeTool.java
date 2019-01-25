@@ -80,7 +80,8 @@ import acme.util.decorations.NullDefault;
 import acme.util.option.CommandLine;
 
 import java.io.BufferedWriter;
-
+import java.io.FileWriter;
+import java.io.IOException;
 /**
  * A simple VC-based HappensBefore Race Detector.
  *
@@ -98,7 +99,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 
 	// my stuff
 	//private PrintWriter mylog; 
-	BufferedWriter mylog = new BufferedWriter(new FileWriter(file), 32768);
+	BufferedWriter mylog;
 	private Integer AccessCounter = new Integer(0);
 	private Integer LockCounter  = new Integer(0);
 	private Random idgen = new Random(); 
@@ -118,9 +119,10 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		});
 
 		try {
-			mylog = new PrintWriter("my.log", "UTF-8");
+			//mylog = new PrintWriter("my.log", "UTF-8");
+                       mylog = new BufferedWriter(new FileWriter("my.log"), 32768);
 		} catch (Exception e) {
-			System.out.write("fuuu off!");
+			System.out.println("fuuu off!");
 		}
 
 	}
