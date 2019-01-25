@@ -351,7 +351,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		
 		if (shadow instanceof VectorClockPair) {
 			VectorClockPair p = (VectorClockPair)shadow;
-			System.out.println(p.Identity)
+			System.out.println(p.Identity);
 		}
 		return true;
 	}
@@ -362,7 +362,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		
 		if (shadow instanceof VectorClockPair) {
 			VectorClockPair p = (VectorClockPair)shadow;
-			System.out.println(p.Identity)
+			System.out.println(p.Identity);
 		}
 		
 		return true;
