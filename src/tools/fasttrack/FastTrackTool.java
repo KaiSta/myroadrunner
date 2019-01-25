@@ -394,6 +394,7 @@ public class FastTrackTool extends Tool implements BarrierListener<FTBarrierStat
 
 
 	public static boolean readFastPath(final ShadowVar shadow, final ShadowThread st) {
+		System.out.println("BLAAAKJFSJSJFSLJAFSLJFDALKJSALKJS");
 		if (shadow instanceof FTVarState) {
 			final FTVarState sx = ((FTVarState)shadow);
 
