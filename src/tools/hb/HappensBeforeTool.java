@@ -359,6 +359,12 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 	public static boolean writeFastPath(final ShadowVar shadow, final ShadowThread st) {
 		System.out.println(">>>>>>>>>>>>>>>" +st.getTid() + "--" + shadow.getClass().getName());
 		System.out.println(">>>>>>>>>>>>>>>" +shadow.toString());
+		
+		if (shadow instanceof VectorClockPair) {
+			VectorClockPair p = (VectorClockPair)shadow;
+			System.out.println(p.Identity)
+		}
+		
 		return true;
 	}
 
