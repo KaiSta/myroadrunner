@@ -344,6 +344,16 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 			super.access(fae);
 		} 
 	}
+	
+	public static boolean readFastPath(final ShadowVar shadow, final ShadowThread st) {
+		System.out.Println(st.getTid())
+		System.out.Println(shadow.toString())
+	}
+	
+	public static boolean writeFastPath(final ShadowVar shadow, final ShadowThread st) {
+		System.out.Println(st.getTid())
+		System.out.Println(shadow.toString())
+	}
 
 
 	private boolean checkAfter(VectorClock prev, String prevOp, ShadowThread currentThread, String curOp, 
