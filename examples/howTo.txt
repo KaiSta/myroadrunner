@@ -1,0 +1,2 @@
+./TEST -quiet -maxWarn=1 -tool=HB -noTidGC
+

@@ -1,9 +1,20 @@
+TEST BufWriter program
+
+[main: RoadRunner Agent Loaded.]
+[main: Running in FAST Mode]
+[RR: Creating Fresh Meta Data]
+[main: ----- ----- ----- -----       Meep Meep.      ----- ----- ----- -----]
+[main: ]
+bla 41
+<BufWriter,0,[None]>[main: ]
+[main: ----- ----- ----- -----      Thpthpthpth.     ----- ----- ----- -----]
+[RR: Total Time: 443]
 <entry>
-  <date> Mon Jan 28 11:23:42 UTC 2019 </date> 
+  <date> Mon Jan 28 11:24:31 UTC 2019 </date> 
   <mode> FAST </mode> 
   <timeout> NO </timeout> 
   <options>
-    <option><name> javaArgs </name>           <value> examples.bubblesort.BubbleSort  </value> </option>
+    <option><name> javaArgs </name>           <value> examples.bufwriter.BufWriter  </value> </option>
     <option><name> noDecInline </name>        <value> false </value> </option>
     <option><name> quiet </name>              <value> true </value> </option>
     <option><name> logDepth </name>           <value> 100 </value> </option>
@@ -21,7 +32,7 @@
     <option><name> maxYikes </name>           <value> 5 </value>  </option>
     <option><name> help </name>               <value> false </value> </option>
     <option><name> toolpath </name>           <value> /home/kaist/repos/myroadrunner/classes/rr/simple:/home/kaist/repos/myroadrunner/classes/tools </value> </option>
-    <option><name> classpath </name>          <value> bubble.jar </value> </option>
+    <option><name> classpath </name>          <value> bufwriter.jar </value> </option>
     <option><name> tool </name>               <value> HB </value> </option>
     <option><name> tools </name>              <value> false </value> </option>
     <option><name> noxml </name>              <value> false </value> </option>
@@ -80,16 +91,16 @@
     <name> os.arch </name>             <value> amd64 </value> 
     <name> os.version </name>          <value> 4.15.0-43-generic </value> 
     <name> user.name </name>           <value> kaist </value> 
-    <name> user.dir </name>            <value> /home/kaist/repos/myroadrunner/examples/bubblesort </value> 
+    <name> user.dir </name>            <value> /home/kaist/repos/myroadrunner/examples/bufwriter </value> 
     <availableProcs> 16 </availableProcs> 
     <memCommitted> 1963 </memCommitted> 
-    <memUsed> 192 </memUsed> 
+    <memUsed> 195 </memUsed> 
     <memTotal> 1963 </memTotal> 
-    <compileTime> 3055 </compileTime> 
-    <gc> <name> PS Scavenge </name> <time> 8 </time> </gc>
+    <compileTime> 2951 </compileTime> 
+    <gc> <name> PS Scavenge </name> <time> 0 </time> </gc>
     <gc> <name> PS MarkSweep </name> <time> 0 </time> </gc>
   </system>
-  <instrumented> examples/bubblesort/BubbleSort examples/bubblesort/BubbleSortImpl examples/bubblesort/OneBubble examples/bubblesort/Reporter  </instrumented> 
+  <instrumented> examples/bufwriter/BufWriter examples/bufwriter/Buffer examples/bufwriter/Checker examples/bufwriter/SyncWriter  </instrumented> 
   <instrumentedNum> 4 </instrumentedNum> 
   <skipped>  </skipped> 
   <skippedNum> 0 </skippedNum> 
@@ -97,7 +108,7 @@
   <sanityCheckedNum> 0 </sanityCheckedNum> 
   <counters>
 
-    <counter><name> "ArrayStateFactory: Size" </name>                    <value> 2 </value> </counter>
+    <counter><name> "ArrayStateFactory: Size" </name>                    <value> 3 </value> </counter>
     <counter><name> "ArrayStateFactory: Attic Move Time" </name>         <value> <total>0,00000</total> <count>0</count>  </value> </counter>
     <counter><name> "ArrayStateFactory: Attic Hits" </name>              <value> 0 </value> </counter>
 
@@ -109,13 +120,13 @@
 
     <counter><name> "ShadowLock: objects" </name>                        <value> 0 </value> </counter>
 
-    <counter><name> "ShadowThread: Count" </name>                        <value> 26 </value> </counter>
-    <counter><name> "ShadowThread: Max Live" </name>                     <value> 26 </value> </counter>
+    <counter><name> "ShadowThread: Count" </name>                        <value> 5 </value> </counter>
+    <counter><name> "ShadowThread: Max Live" </name>                     <value> 5 </value> </counter>
     <counter><name> "ShadowThread: getCurrentThread() calls" </name>     <value> 0 </value> </counter>
 
-    <counter><name> "Time: Instrumenter" </name>                         <value> <total>89,0000</total> <count>4</count> <ave>22,2500</ave> </value> </counter>
+    <counter><name> "Time: Instrumenter" </name>                         <value> <total>50,0000</total> <count>4</count> <ave>12,5000</ave> </value> </counter>
 
-    <counter><name> "VectorClock: Pair Objects" </name>                  <value> 142 </value> </counter>
+    <counter><name> "VectorClock: Pair Objects" </name>                  <value> 26 </value> </counter>
   </counters>
   <yikes>
   </yikes>
@@ -125,46 +136,36 @@
   <tool>
     <name> Last </name> 
   </tool>
-  <threadCount> 13 </threadCount> 
-  <threadMaxActive> 26 </threadMaxActive> 
-  <errorTotal> 5 </errorTotal> 
-  <distinctErrorTotal> 5 </distinctErrorTotal> 
+  <threadCount> 5 </threadCount> 
+  <threadMaxActive> 5 </threadMaxActive> 
+  <errorTotal> 2 </errorTotal> 
+  <distinctErrorTotal> 2 </distinctErrorTotal> 
   <methods>
   </methods>
   <fields>
+    <field>
+      <name> examples/bufwriter/Checker.flag_Z </name> 
+      <error> <name> HappensBefore </name> <count> 1 </count> </error>
+    </field>
+    <field>
+      <name> examples/bufwriter/SyncWriter.flag_Z </name> 
+      <error> <name> HappensBefore </name> <count> 1 </count> </error>
+    </field>
   </fields>
   <arrays>
-    <target>
-      <location> wr_array@examples/bubblesort/OneBubble.java:63:26 </location> 
-      <error> <name> HappensBefore </name> <count> 1 </count> </error>
-    </target>
-    <target>
-      <location> rd_array@examples/bubblesort/OneBubble.java:51:36 </location> 
-      <error> <name> HappensBefore </name> <count> 1 </count> </error>
-    </target>
-    <target>
-      <location> wr_array@examples/bubblesort/OneBubble.java:64:35 </location> 
-      <error> <name> HappensBefore </name> <count> 1 </count> </error>
-    </target>
-    <target>
-      <location> rd_array@examples/bubblesort/BubbleSortImpl.java:99:51 </location> 
-      <error> <name> HappensBefore </name> <count> 1 </count> </error>
-    </target>
-    <target>
-      <location> rd_array@examples/bubblesort/OneBubble.java:51:44 </location> 
-      <error> <name> HappensBefore </name> <count> 1 </count> </error>
-    </target>
   </arrays>
   <locks>
   </locks>
   <fieldAccesses>
   </fieldAccesses>
   <errorCountPerErrorType>
-    <errorType> <name> HappensBefore </name> <count> 5 </count> </errorType>
+    <errorType> <name> HappensBefore </name> <count> 2 </count> </errorType>
   </errorCountPerErrorType>
   <warningsTotal> 0 </warningsTotal> 
   <yikesTotal> 0 </yikesTotal> 
   <failed> false </failed> 
   <failedReason>  </failedReason> 
-  <time> 531 </time> 
+  <time> 443 </time> 
 </entry>
+[RR: Time = 443]
+[RR: Exiting: 0]

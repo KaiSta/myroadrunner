@@ -1,5 +1,5 @@
 <entry>
-  <date> Mon Jan 14 15:39:59 CET 2019 </date> 
+  <date> Mon Jan 28 11:25:58 UTC 2019 </date> 
   <mode> FAST </mode> 
   <timeout> NO </timeout> 
   <options>
@@ -15,12 +15,12 @@
     <option><name> infThreads </name>         <value> 0 </value>  </option>
     <option><name> benchmark </name>          <value> 0 </value>  </option>
     <option><name> warmup </name>             <value> 3 </value>  </option>
-    <option><name> availableProcessors </name> <value> 2 </value>  </option>
+    <option><name> availableProcessors </name> <value> 16 </value> </option>
     <option><name> args </name>               <value> [] </value> </option>
     <option><name> d </name>                  <value> [] </value> </option>
     <option><name> maxYikes </name>           <value> 5 </value>  </option>
     <option><name> help </name>               <value> false </value> </option>
-    <option><name> toolpath </name>           <value> /home/kai/javastuff/RoadRunner/classes/rr/simple:/home/kai/javastuff/RoadRunner/classes/tools </value> </option>
+    <option><name> toolpath </name>           <value> /home/kaist/repos/myroadrunner/classes/rr/simple:/home/kaist/repos/myroadrunner/classes/tools </value> </option>
     <option><name> classpath </name>          <value> merge.jar </value> </option>
     <option><name> tool </name>               <value> HB </value> </option>
     <option><name> tools </name>              <value> false </value> </option>
@@ -33,7 +33,7 @@
     <option><name> pulse </name>              <value>  </value>   </option>
     <option><name> maxTime </name>            <value> 0 </value>  </option>
     <option><name> maxMem </name>             <value> 10240 </value> </option>
-    <option><name> maxTid </name>             <value> 42 </value> </option>
+    <option><name> maxTid </name>             <value> 56 </value> </option>
     <option><name> stacks </name>             <value> false </value> </option>
     <option><name> values </name>             <value> false </value> </option>
     <option><name> noTidGC </name>            <value> true </value> </option>
@@ -63,7 +63,7 @@
     <option><name> indices </name>            <value> 2147483647 </value> </option>
     <option><name> updaters </name>           <value> SAFE </value> </option>
     <option><name> array </name>              <value> FINE </value> </option>
-    <option><name> userArray </name>          <value> rr.state.ArrayStateCreator$1@74a14482 </value> </option>
+    <option><name> userArray </name>          <value> rr.state.ArrayStateCreator$1@60e53b93 </value> </option>
     <option><name> nobarrier </name>          <value> false </value> </option>
     <option><name> arrayCacheType </name>     <value> STRONG </value> </option>
     <option><name> callSites </name>          <value> false </value> </option>
@@ -71,21 +71,21 @@
     <option><name> noInterrupt </name>        <value> false </value> </option>
   </options>
   <system>
-    <host> kai-VirtualBox </host> 
+    <host> iwi-i-vm-ks </host> 
     <name> java.vm.version </name>     <value> 25.191-b12 </value> 
     <name> java.vm.vendor </name>      <value> Oracle Corporation </value> 
     <name> java.vm.name </name>        <value> Java HotSpot(TM) 64-Bit Server VM </value> 
-    <name> java.class.path </name>     <value> .:/home/kai/javastuff/RoadRunner/build/jar/rragent.jar </value> 
+    <name> java.class.path </name>     <value> .:/home/kaist/repos/myroadrunner/build/jar/rragent.jar </value> 
     <name> os.name </name>             <value> Linux </value> 
     <name> os.arch </name>             <value> amd64 </value> 
     <name> os.version </name>          <value> 4.15.0-43-generic </value> 
-    <name> user.name </name>           <value> kai </value> 
-    <name> user.dir </name>            <value> /home/kai/javastuff/RoadRunner/examples/mergesort </value> 
-    <availableProcs> 2 </availableProcs> 
-    <memCommitted> 982 </memCommitted> 
-    <memUsed> 129 </memUsed> 
-    <memTotal> 982 </memTotal> 
-    <compileTime> 1021 </compileTime> 
+    <name> user.name </name>           <value> kaist </value> 
+    <name> user.dir </name>            <value> /home/kaist/repos/myroadrunner/examples/mergesort </value> 
+    <availableProcs> 16 </availableProcs> 
+    <memCommitted> 1963 </memCommitted> 
+    <memUsed> 185 </memUsed> 
+    <memTotal> 1963 </memTotal> 
+    <compileTime> 2705 </compileTime> 
     <gc> <name> PS Scavenge </name> <time> 0 </time> </gc>
     <gc> <name> PS MarkSweep </name> <time> 0 </time> </gc>
   </system>
@@ -97,8 +97,8 @@
   <sanityCheckedNum> 0 </sanityCheckedNum> 
   <counters>
 
-    <counter><name> "ArrayStateFactory: Size" </name>                    <value> 25 </value> </counter>
-    <counter><name> "ArrayStateFactory: Attic Move Time" </name>         <value> <total>0.00000</total> <count>0</count>  </value> </counter>
+    <counter><name> "ArrayStateFactory: Size" </name>                    <value> 21 </value> </counter>
+    <counter><name> "ArrayStateFactory: Attic Move Time" </name>         <value> <total>0,00000</total> <count>0</count>  </value> </counter>
     <counter><name> "ArrayStateFactory: Attic Hits" </name>              <value> 0 </value> </counter>
 
     <counter><name> "Clone: Count" </name>                               <value> 0 </value> </counter>
@@ -109,13 +109,13 @@
 
     <counter><name> "ShadowLock: objects" </name>                        <value> 0 </value> </counter>
 
-    <counter><name> "ShadowThread: Count" </name>                        <value> 8 </value> </counter>
-    <counter><name> "ShadowThread: Max Live" </name>                     <value> 8 </value> </counter>
+    <counter><name> "ShadowThread: Count" </name>                        <value> 5 </value> </counter>
+    <counter><name> "ShadowThread: Max Live" </name>                     <value> 5 </value> </counter>
     <counter><name> "ShadowThread: getCurrentThread() calls" </name>     <value> 0 </value> </counter>
 
-    <counter><name> "Time: Instrumenter" </name>                         <value> <total>112.000</total> <count>2</count> <ave>56.0000</ave> </value> </counter>
+    <counter><name> "Time: Instrumenter" </name>                         <value> <total>69,0000</total> <count>2</count> <ave>34,5000</ave> </value> </counter>
 
-    <counter><name> "VectorClock: Pair Objects" </name>                  <value> 307 </value> </counter>
+    <counter><name> "VectorClock: Pair Objects" </name>                  <value> 291 </value> </counter>
   </counters>
   <yikes>
   </yikes>
@@ -125,8 +125,8 @@
   <tool>
     <name> Last </name> 
   </tool>
-  <threadCount> 8 </threadCount> 
-  <threadMaxActive> 8 </threadMaxActive> 
+  <threadCount> 5 </threadCount> 
+  <threadMaxActive> 5 </threadMaxActive> 
   <errorTotal> 1 </errorTotal> 
   <distinctErrorTotal> 1 </distinctErrorTotal> 
   <methods>
@@ -146,9 +146,9 @@
   <errorCountPerErrorType>
     <errorType> <name> HappensBefore </name> <count> 1 </count> </errorType>
   </errorCountPerErrorType>
-  <warningsTotal> 6 </warningsTotal> 
+  <warningsTotal> 5 </warningsTotal> 
   <yikesTotal> 0 </yikesTotal> 
   <failed> false </failed> 
   <failedReason>  </failedReason> 
-  <time> 875 </time> 
+  <time> 463 </time> 
 </entry>
