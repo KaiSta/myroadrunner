@@ -46,6 +46,6 @@ echo "PREP DONE"
 
 SPECIAL=" -maxTid=$[AVAIL_PROCS + 10]"
 
-echo rrrun ${SPECIAL} -classpath=original.jar ${TEST_ARGS} $* ${TARGET} ${PROGRAM_ARGS}
+echo rrrun ${SPECIAL} -classpath=original2.jar ${TEST_ARGS} $* ${TARGET} ${PROGRAM_ARGS}
 
-rrrun ${SPECIAL} -classpath=original.jar ${TEST_ARGS} $* ${TARGET} ${PROGRAM_ARGS}
+rrrun ${SPECIAL} -classpath=original2.jar ${TEST_ARGS} $* ${TARGET} ${PROGRAM_ARGS}
