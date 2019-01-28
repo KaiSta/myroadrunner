@@ -41,6 +41,6 @@ if [ "x$PROGRAM_ARGS" = "x" ]; then
     PROGRAM_ARGS="4";
 fi
 
-echo rrrun -classpath=original.jar ${TEST_ARGS} $* ${TARGET} ${PROGRAM_ARGS}
+echo rrrun -classpath=original2.jar ${TEST_ARGS} $* ${TARGET} ${PROGRAM_ARGS}
 
-rrrun -classpath=original.jar ${TEST_ARGS} $* ${TARGET} ${PROGRAM_ARGS}
+rrrun -classpath=original2.jar ${TEST_ARGS} $* ${TARGET} ${PROGRAM_ARGS}

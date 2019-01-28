@@ -1,5 +1,5 @@
 <entry>
-  <date> Mon Jan 28 11:24:31 UTC 2019 </date> 
+  <date> Mon Jan 28 17:05:57 UTC 2019 </date> 
   <mode> FAST </mode> 
   <timeout> NO </timeout> 
   <options>
@@ -85,7 +85,7 @@
     <memCommitted> 1963 </memCommitted> 
     <memUsed> 195 </memUsed> 
     <memTotal> 1963 </memTotal> 
-    <compileTime> 2951 </compileTime> 
+    <compileTime> 2574 </compileTime> 
     <gc> <name> PS Scavenge </name> <time> 0 </time> </gc>
     <gc> <name> PS MarkSweep </name> <time> 0 </time> </gc>
   </system>
@@ -113,9 +113,9 @@
     <counter><name> "ShadowThread: Max Live" </name>                     <value> 5 </value> </counter>
     <counter><name> "ShadowThread: getCurrentThread() calls" </name>     <value> 0 </value> </counter>
 
-    <counter><name> "Time: Instrumenter" </name>                         <value> <total>50,0000</total> <count>4</count> <ave>12,5000</ave> </value> </counter>
+    <counter><name> "Time: Instrumenter" </name>                         <value> <total>58,0000</total> <count>4</count> <ave>14,5000</ave> </value> </counter>
 
-    <counter><name> "VectorClock: Pair Objects" </name>                  <value> 26 </value> </counter>
+    <counter><name> "VectorClock: Pair Objects" </name>                  <value> 24 </value> </counter>
   </counters>
   <yikes>
   </yikes>
@@ -154,5 +154,5 @@
   <yikesTotal> 0 </yikesTotal> 
   <failed> false </failed> 
   <failedReason>  </failedReason> 
-  <time> 443 </time> 
+  <time> 462 </time> 
 </entry>

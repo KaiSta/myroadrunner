@@ -1,5 +1,5 @@
 <entry>
-  <date> Mon Jan 28 11:25:58 UTC 2019 </date> 
+  <date> Mon Jan 28 17:06:14 UTC 2019 </date> 
   <mode> FAST </mode> 
   <timeout> NO </timeout> 
   <options>
@@ -83,9 +83,9 @@
     <name> user.dir </name>            <value> /home/kaist/repos/myroadrunner/examples/mergesort </value> 
     <availableProcs> 16 </availableProcs> 
     <memCommitted> 1963 </memCommitted> 
-    <memUsed> 185 </memUsed> 
+    <memUsed> 195 </memUsed> 
     <memTotal> 1963 </memTotal> 
-    <compileTime> 2705 </compileTime> 
+    <compileTime> 2664 </compileTime> 
     <gc> <name> PS Scavenge </name> <time> 0 </time> </gc>
     <gc> <name> PS MarkSweep </name> <time> 0 </time> </gc>
   </system>
@@ -97,7 +97,7 @@
   <sanityCheckedNum> 0 </sanityCheckedNum> 
   <counters>
 
-    <counter><name> "ArrayStateFactory: Size" </name>                    <value> 21 </value> </counter>
+    <counter><name> "ArrayStateFactory: Size" </name>                    <value> 29 </value> </counter>
     <counter><name> "ArrayStateFactory: Attic Move Time" </name>         <value> <total>0,00000</total> <count>0</count>  </value> </counter>
     <counter><name> "ArrayStateFactory: Attic Hits" </name>              <value> 0 </value> </counter>
 
@@ -113,9 +113,9 @@
     <counter><name> "ShadowThread: Max Live" </name>                     <value> 5 </value> </counter>
     <counter><name> "ShadowThread: getCurrentThread() calls" </name>     <value> 0 </value> </counter>
 
-    <counter><name> "Time: Instrumenter" </name>                         <value> <total>69,0000</total> <count>2</count> <ave>34,5000</ave> </value> </counter>
+    <counter><name> "Time: Instrumenter" </name>                         <value> <total>70,0000</total> <count>2</count> <ave>35,0000</ave> </value> </counter>
 
-    <counter><name> "VectorClock: Pair Objects" </name>                  <value> 291 </value> </counter>
+    <counter><name> "VectorClock: Pair Objects" </name>                  <value> 320 </value> </counter>
   </counters>
   <yikes>
   </yikes>
@@ -146,9 +146,9 @@
   <errorCountPerErrorType>
     <errorType> <name> HappensBefore </name> <count> 1 </count> </errorType>
   </errorCountPerErrorType>
-  <warningsTotal> 5 </warningsTotal> 
+  <warningsTotal> 4 </warningsTotal> 
   <yikesTotal> 0 </yikesTotal> 
   <failed> false </failed> 
   <failedReason>  </failedReason> 
-  <time> 463 </time> 
+  <time> 460 </time> 
 </entry>

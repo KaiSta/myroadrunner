@@ -40,7 +40,7 @@ PROGRAM_ARGS=""
 
 echo "PREP"
 cd scratch
-unzip -o luindex.zip
+unzip -o luindex2.zip
 cd ..
 echo "PREP DONE"
 

@@ -1,5 +1,5 @@
 <entry>
-  <date> Mon Jan 28 11:22:03 UTC 2019 </date> 
+  <date> Mon Jan 28 17:05:25 UTC 2019 </date> 
   <mode> FAST </mode> 
   <timeout> NO </timeout> 
   <options>
@@ -85,7 +85,7 @@
     <memCommitted> 1963 </memCommitted> 
     <memUsed> 134 </memUsed> 
     <memTotal> 1963 </memTotal> 
-    <compileTime> 2459 </compileTime> 
+    <compileTime> 2440 </compileTime> 
     <gc> <name> PS Scavenge </name> <time> 0 </time> </gc>
     <gc> <name> PS MarkSweep </name> <time> 0 </time> </gc>
   </system>
@@ -113,7 +113,7 @@
     <counter><name> "ShadowThread: Max Live" </name>                     <value> 2 </value> </counter>
     <counter><name> "ShadowThread: getCurrentThread() calls" </name>     <value> 0 </value> </counter>
 
-    <counter><name> "Time: Instrumenter" </name>                         <value> <total>25,0000</total> <count>2</count> <ave>12,5000</ave> </value> </counter>
+    <counter><name> "Time: Instrumenter" </name>                         <value> <total>24,0000</total> <count>2</count> <ave>12,0000</ave> </value> </counter>
 
     <counter><name> "VectorClock: Pair Objects" </name>                  <value> 4 </value> </counter>
   </counters>

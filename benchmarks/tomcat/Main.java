@@ -54,7 +54,7 @@ import java.io.IOException;
 
 public class Main {
 
-	private static final int SMALL = 4;
+	private static final int SMALL = 24;
 	private static final int DEFAULT = 64;
 	private static final int LARGE = 512;
 	private static final int PORT = 7080;
@@ -73,7 +73,7 @@ public class Main {
 		myControl.exec("startIteration");
 
 		final int threadCount = args.length == 0 ? Runtime.getRuntime().availableProcessors() : Integer.parseInt(args[0]); 
-		final int iterations = DEFAULT;
+		final int iterations = SMALL;
 		final int iterationsPerClient = iterations / threadCount;
 
 		final Thread[] threads = new Thread[threadCount];

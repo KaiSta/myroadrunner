@@ -57,7 +57,7 @@ public class RRBench {
 	}
 
 	public void iterate() throws Exception {
-		JGFRayTracerBenchSizeB.main(argv);
+		JGFRayTracerBenchSizeA.main(argv);
 	}
 
 	public void postIteration() throws Exception { }

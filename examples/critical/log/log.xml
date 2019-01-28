@@ -1,5 +1,5 @@
 <entry>
-  <date> Mon Jan 28 11:24:55 UTC 2019 </date> 
+  <date> Mon Jan 28 17:06:05 UTC 2019 </date> 
   <mode> FAST </mode> 
   <timeout> NO </timeout> 
   <options>
@@ -85,7 +85,7 @@
     <memCommitted> 1963 </memCommitted> 
     <memUsed> 154 </memUsed> 
     <memTotal> 1963 </memTotal> 
-    <compileTime> 2502 </compileTime> 
+    <compileTime> 2543 </compileTime> 
     <gc> <name> PS Scavenge </name> <time> 0 </time> </gc>
     <gc> <name> PS MarkSweep </name> <time> 0 </time> </gc>
   </system>
@@ -115,11 +115,9 @@
 
     <counter><name> "Time: Instrumenter" </name>                         <value> <total>30,0000</total> <count>2</count> <ave>15,0000</ave> </value> </counter>
 
-    <counter><name> "VectorClock: Pair Objects" </name>                  <value> 6 </value> </counter>
+    <counter><name> "VectorClock: Pair Objects" </name>                  <value> 5 </value> </counter>
   </counters>
   <yikes>
-    <message> SafeFieldUpdater: Concurrent update </message> <count> 1 </count> 
-    <message> concurrent initialization of guard  </message> <count> 1 </count> 
   </yikes>
   <tool>
     <name> tools.hb.HappensBeforeTool </name> 
@@ -149,8 +147,8 @@
     <errorType> <name> HappensBefore </name> <count> 1 </count> </errorType>
   </errorCountPerErrorType>
   <warningsTotal> 0 </warningsTotal> 
-  <yikesTotal> 2 </yikesTotal> 
+  <yikesTotal> 0 </yikesTotal> 
   <failed> false </failed> 
   <failedReason>  </failedReason> 
-  <time> 390 </time> 
+  <time> 395 </time> 
 </entry>

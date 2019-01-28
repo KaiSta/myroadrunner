@@ -1,5 +1,5 @@
 <entry>
-  <date> Mon Jan 28 11:26:38 UTC 2019 </date> 
+  <date> Mon Jan 28 17:06:34 UTC 2019 </date> 
   <mode> FAST </mode> 
   <timeout> NO </timeout> 
   <options>
@@ -85,7 +85,7 @@
     <memCommitted> 1963 </memCommitted> 
     <memUsed> 462 </memUsed> 
     <memTotal> 1963 </memTotal> 
-    <compileTime> 2838 </compileTime> 
+    <compileTime> 2769 </compileTime> 
     <gc> <name> PS Scavenge </name> <time> 0 </time> </gc>
     <gc> <name> PS MarkSweep </name> <time> 0 </time> </gc>
   </system>
@@ -118,7 +118,7 @@
     <counter><name> "VectorClock: Pair Objects" </name>                  <value> 25 </value> </counter>
   </counters>
   <yikes>
-    <message> SafeFieldUpdater: Concurrent update </message> <count> 21 </count> 
+    <message> SafeFieldUpdater: Concurrent update </message> <count> 17 </count> 
   </yikes>
   <tool>
     <name> tools.hb.HappensBeforeTool </name> 
@@ -152,8 +152,8 @@
     <errorType> <name> HappensBefore </name> <count> 2 </count> </errorType>
   </errorCountPerErrorType>
   <warningsTotal> 16 </warningsTotal> 
-  <yikesTotal> 21 </yikesTotal> 
+  <yikesTotal> 17 </yikesTotal> 
   <failed> false </failed> 
   <failedReason>  </failedReason> 
-  <time> 436 </time> 
+  <time> 426 </time> 
 </entry>
