@@ -74,6 +74,6 @@ public class Main {
 		} else { 
 			benchmark.createWorkers(Runtime.getRuntime().availableProcessors());
 		}
-		benchmark.doWork(100);
+		benchmark.doWork(10);
 	}
 }
