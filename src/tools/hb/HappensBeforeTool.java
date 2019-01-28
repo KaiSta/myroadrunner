@@ -180,10 +180,10 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		synchronized (mylog) {
 			++LockCounter;
 			try {
-			mylog.write((currentThread.getTid()+1) + ",LK," +  (shadowLock.hashCode()+1) + ",nil," + LockCounter +"\n");
-			mylog.write((currentThread.getTid()+1) + ",LK," +  (shadowLock.hashCode()+1) + ",nil," + LockCounter+"\n");
+				mylog.write((currentThread.getTid()+1) + ",LK," +  (shadowLock.hashCode()+1) + ",nil," + LockCounter +"\n");
+				mylog.write((currentThread.getTid()+1) + ",LK," +  (shadowLock.hashCode()+1) + ",nil," + LockCounter+"\n");
 			} catch (Exception e) {
-			System.out.println("fuuu off!");
+				System.out.println("fuuu off!");
 			}
 			//mylog.flush();
 		}
@@ -203,8 +203,8 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		synchronized (mylog) {
 		//mylog.write("UNLOCK,T " +  currentThread.getTid() + ",VAR " +  shadowLock.hashCode());
 		try {
-		mylog.write((currentThread.getTid()+1) + ",UK," +  (shadowLock.hashCode()+1) + ",nil,0\n");
-		mylog.write((currentThread.getTid()+1) + ",UK," +  (shadowLock.hashCode()+1) + ",nil,0\n");
+			mylog.write((currentThread.getTid()+1) + ",UK," +  (shadowLock.hashCode()+1) + ",nil,0\n");
+			mylog.write((currentThread.getTid()+1) + ",UK," +  (shadowLock.hashCode()+1) + ",nil,0\n");
 		} catch (Exception e) {
 			System.out.println("fuuu off!");
 		}
@@ -241,7 +241,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 				synchronized (mylog) {
 					++AccessCounter;
 					try {				
-						mylog.write((currentThread.getTid()+1) + ",AWR," +  p.Identity + "," +  loc + "," + AccessCounter+"\n");
+						mylog.write((currentThread.getTid()+1) + ",AWR," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
 					} catch (Exception e) {
 						System.out.println("fuuu off!");
 					}
@@ -254,7 +254,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 				synchronized (mylog) {
 					++AccessCounter;
 					try {
-					mylog.write((currentThread.getTid()+1) + ",ARD," +  p.Identity + "," +  loc + "," + AccessCounter+"\n");
+					mylog.write((currentThread.getTid()+1) + ",ARD," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
 					} catch (Exception e) {
 			System.out.println("fuuu off!");
 		}
@@ -302,10 +302,10 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 				synchronized (mylog) {
 					++AccessCounter;
 					try {
-					mylog.write((currentThread.getTid()+1) + ",WR," +  p.Identity + "," +  loc + "," + AccessCounter+"\n");
+						mylog.write((currentThread.getTid()+1) + ",WR," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
 					} catch (Exception e) {
-			System.out.println("fuuu off!");
-		}
+						System.out.println("fuuu off!");
+					}
 				//mylog.write("WRITE,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
 					//mylog.flush();
 				}
@@ -321,10 +321,10 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 				synchronized (mylog) {
 					++AccessCounter;
 					try {
-					mylog.write((currentThread.getTid()+1) + ",RD," +  p.Identity + "," +  loc + "," + AccessCounter+"\n");
+						mylog.write((currentThread.getTid()+1) + ",RD," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
 					} catch (Exception e) {
-			System.out.println("fuuu off!");
-		}
+						System.out.println("fuuu off!");
+					}
 				//mylog.write("READ,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
 					//mylog.flush();
 				}
@@ -582,14 +582,14 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		try {
 			mylog.flush();
 			
-			BufferedWriter fileLoc = new BufferedWriter(new FileWriter("files.log"), 32768);
-			Set set = hm.entrySet();
-			Iterator i = set.iterator();
-			while(i.hasNext()) {
-				Map.Entry me = (Map.Entry)i.next();
-				fileLoc.write(me.getKey() + "," + me.getValue() + "\n");
-			}
-			fileLoc.flush();
+			// BufferedWriter fileLoc = new BufferedWriter(new FileWriter("files.log"), 32768);
+			// Set set = hm.entrySet();
+			// Iterator i = set.iterator();
+			// while(i.hasNext()) {
+			// 	Map.Entry me = (Map.Entry)i.next();
+			// 	fileLoc.write(me.getKey() + "," + me.getValue() + "\n");
+			// }
+			// fileLoc.flush();
 			
 		} catch (Exception e) {
 			System.out.println("fuuu off!");
