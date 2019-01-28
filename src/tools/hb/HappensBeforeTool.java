@@ -584,7 +584,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 			Iterator i = set.iterator();
 			while(i.hasNext()) {
 				Map.Entry me = (Map.Entry)i.next();
-				fileLoc.write(me.getKey() + "," + me.getValue());
+				fileLoc.write(me.getKey() + "," + me.getValue() + "\n");
 			}
 			fileLoc.flush();
 			
