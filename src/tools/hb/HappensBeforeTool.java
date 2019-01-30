@@ -101,8 +101,8 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 	// my stuff
 	//private PrintWriter mylog; 
 	BufferedWriter mylog;
-	private Integer AccessCounter = new Integer(0);
-	private Integer LockCounter  = new Integer(0);
+	private Integer AccessCounter = new Integer(1);
+	private Integer LockCounter  = new Integer(1);
 	private Random idgen = new Random(); 
 	private HashMap hm = new HashMap();
 	private Integer locCount = new Integer(0);
