@@ -439,7 +439,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 			
 			try {
 				SigCounter++;
-				id = SigCounter;
+				Integer id = SigCounter;
 				mylog.write((td.getTid()+1) + ",SIG," + id + ",nil," + id+"\n");
 				mylog.write((forked.getTid()+1) + ",WT," + id + ",nil," + id+"\n");
 			} catch (Exception e) {
@@ -510,7 +510,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		synchronized (mylog) {
 			try {
 				SigCounter++;
-				id = SigCounter;
+				Integer id = SigCounter;
 				mylog.write((currentThread.getTid()+1) + ",WT," + id + ",nil," + id+"\n");
 				mylog.write((joinedThread.getTid()+1) + ",SIG," + id + ",nil," + id+"\n");
 			} catch (Exception e) {
