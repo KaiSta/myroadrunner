@@ -510,11 +510,11 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		synchronized (mylog) {
 			int id  = idgen.nextInt(999999);
 			try {
-			mylog.write((currentThread.getTid()+1) + ",WT," + id + ",nil," + id+"\n");
-			mylog.write((joinedThread.getTid()+1) + ",SIG," + id + ",nil," + id+"\n");
+				mylog.write((currentThread.getTid()+1) + ",WT," + id + ",nil," + id+"\n");
+				mylog.write((joinedThread.getTid()+1) + ",SIG," + id + ",nil," + id+"\n");
 			} catch (Exception e) {
-			System.out.println("fuuu off!");
-		}
+				System.out.println("fuuu off!");
+			}
 			//mylog.flush();
 		}
 
