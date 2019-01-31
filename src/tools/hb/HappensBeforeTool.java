@@ -466,7 +466,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		// 	// System.out.println("fuuu off!");
 		// }
 			//mylog.flush();
-		}
+		//}
 		synchronized(we.getLock()) {
 			get(we.getLock()).max(get(we.getThread()));
 		}
@@ -484,7 +484,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		// 	// System.out.println("fuuu off!");
 		// }
 			//mylog.flush();
-		}
+		//}
 		synchronized(we.getLock()) {
 			get(we.getLock()).max(get(we.getThread()));
 		}
