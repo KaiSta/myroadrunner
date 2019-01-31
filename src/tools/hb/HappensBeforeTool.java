@@ -178,20 +178,21 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		final ShadowLock shadowLock = ae.getLock();
 
 	
-		synchronized (mylog) {
-			++LockCounter;
-			try {
-				mylog.write((currentThread.getTid()+1) + ",LK," +  (shadowLock.hashCode()+1) + ",nil," + LockCounter +"\n");
-				//mylog.write((currentThread.getTid()+1) + ",LK," +  (shadowLock.hashCode()+1) + ",nil," + LockCounter+"\n");
-			} catch (Exception e) {
-				System.out.println("fuuu off!");
-			}
-			//mylog.flush();
-		}
+		
 
 		tick(currentThread);
 		synchronized(shadowLock) {
 			get(currentThread).max(get(shadowLock));
+			synchronized (mylog) {
+				++LockCounter;
+				try {
+					mylog.write((currentThread.getTid()+1) + ",LK," +  (shadowLock.hashCode()+1) + ",nil," + LockCounter +"\n");
+					//mylog.write((currentThread.getTid()+1) + ",LK," +  (shadowLock.hashCode()+1) + ",nil," + LockCounter+"\n");
+				} catch (Exception e) {
+					System.out.println("fuuu off!");
+				}
+				//mylog.flush();
+			}
 		}
 		super.acquire(ae);
 	}
@@ -201,19 +202,20 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		final ShadowThread currentThread = re.getThread();
 		final ShadowLock shadowLock = re.getLock();
 
-		synchronized (mylog) {
-		//mylog.write("UNLOCK,T " +  currentThread.getTid() + ",VAR " +  shadowLock.hashCode());
-		try {
-			mylog.write((currentThread.getTid()+1) + ",UK," +  (shadowLock.hashCode()+1) + ",nil,0\n");
-		//	mylog.write((currentThread.getTid()+1) + ",UK," +  (shadowLock.hashCode()+1) + ",nil,0\n");
-		} catch (Exception e) {
-			System.out.println("fuuu off!");
-		}
-		//mylog.flush();
-		}
+		
 
 		synchronized(shadowLock) {
 			get(shadowLock).copy(get(currentThread));
+			synchronized (mylog) {
+				//mylog.write("UNLOCK,T " +  currentThread.getTid() + ",VAR " +  shadowLock.hashCode());
+					try {
+						mylog.write((currentThread.getTid()+1) + ",UK," +  (shadowLock.hashCode()+1) + ",nil,0\n");
+					//	mylog.write((currentThread.getTid()+1) + ",UK," +  (shadowLock.hashCode()+1) + ",nil,0\n");
+					} catch (Exception e) {
+						System.out.println("fuuu off!");
+					}
+				//mylog.flush();
+			}
 		}
 		tick(currentThread);
 		super.release(re);
@@ -302,39 +304,41 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 			}
 			
 			if (isWrite) {
-				synchronized (mylog) {
-					p.LastThread = currentThread.getTid()+1;
-					++AccessCounter;
-					try {
-						mylog.write((currentThread.getTid()+1) + ",WR," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
-					} catch (Exception e) {
-						System.out.println("fuuu off!");
-					}
-				}
+				
 				// check after prev read
 				passAlong |= checkAfter(p.rd, "read", currentThread, "write", fae, true, p);
 				// check after prev write
 				passAlong |= checkAfter(p.wr, "write", currentThread, "write", fae, true, p);
 				synchronized(p.wr) { 	
 					p.wr.set(tid, cv.get(tid));
+					synchronized (mylog) {
+						p.LastThread = currentThread.getTid()+1;
+						++AccessCounter;
+						try {
+							mylog.write((currentThread.getTid()+1) + ",WR," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
+						} catch (Exception e) {
+							System.out.println("fuuu off!");
+						}
+					}
 				}
  
 			} else {
-				synchronized (mylog) {
-					p.LastThread = currentThread.getTid()+1;
-					++AccessCounter;
-					try {
-						mylog.write((currentThread.getTid()+1) + ",RD," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
-					} catch (Exception e) {
-						System.out.println("fuuu off!");
-					}
-				//mylog.write("READ,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
-					//mylog.flush();
-				}
+				
 				// check after prev write
 				passAlong |= checkAfter(p.wr, "write", currentThread, "read", fae, true, p);
 				synchronized(p.rd) { 	
 					p.rd.set(tid, cv.get(tid));
+					synchronized (mylog) {
+						p.LastThread = currentThread.getTid()+1;
+						++AccessCounter;
+						try {
+							mylog.write((currentThread.getTid()+1) + ",RD," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
+						} catch (Exception e) {
+							System.out.println("fuuu off!");
+						}
+					//mylog.write("READ,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
+						//mylog.flush();
+					}
 				}
 //				p.rd.max(cv);
 			}
