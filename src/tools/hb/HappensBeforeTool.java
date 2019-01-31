@@ -103,6 +103,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 	BufferedWriter mylog;
 	private Integer AccessCounter = new Integer(0);
 	private Integer LockCounter  = new Integer(0);
+	private Integer SigCounter = new Integer(0);
 	private Random idgen = new Random(); 
 	private HashMap hm = new HashMap();
 	private Integer locCount = new Integer(0);
@@ -300,14 +301,13 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 			
 			if (isWrite) {
 				synchronized (mylog) {
+					p.LastThread = currentThread.getTid()+1;
 					++AccessCounter;
 					try {
 						mylog.write((currentThread.getTid()+1) + ",WR," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
 					} catch (Exception e) {
 						System.out.println("fuuu off!");
 					}
-				//mylog.write("WRITE,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
-					//mylog.flush();
 				}
 				// check after prev read
 				passAlong |= checkAfter(p.rd, "read", currentThread, "write", fae, true, p);
@@ -346,28 +346,26 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 	}
 	
 	public static boolean readFastPath(final ShadowVar shadow, final ShadowThread st) {
-		return false;
-//		System.out.println(">>>>>>>>>>>>>>>" + st.getTid()+ "--" + shadow.getClass().getName());
-//		System.out.println(">>>>>>>>>>>>>>>" +shadow.toString());
+		// System.out.println(">>>>>>>>>>>>>>>" + st.getTid()+ "--" + shadow.getClass().getName());
+		// System.out.println(">>>>>>>>>>>>>>>" +shadow.toString());
 		
-//		if (shadow instanceof VectorClockPair) {
-//			VectorClockPair p = (VectorClockPair)shadow;
-//			System.out.println(p.Identity);
-//		}
-//		return true;
+		if (shadow instanceof VectorClockPair) {
+			VectorClockPair p = (VectorClockPair)shadow;
+			if (p.LastThread == st.getTid()) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public static boolean writeFastPath(final ShadowVar shadow, final ShadowThread st) {
+		if (shadow instanceof VectorClockPair) {
+			VectorClockPair p = (VectorClockPair)shadow;
+			if (p.LastThread == st.getTid()) {
+				return true;
+			}
+		}
 		return false;
-//		System.out.println(">>>>>>>>>>>>>>>" +st.getTid() + "--" + shadow.getClass().getName());
-//		System.out.println(">>>>>>>>>>>>>>>" +shadow.toString());
-		
-//		if (shadow instanceof VectorClockPair) {
-//			VectorClockPair p = (VectorClockPair)shadow;
-//			System.out.println(p.Identity);
-//		}
-		
-//		return true;
 	}
 
 
@@ -438,13 +436,15 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		final ShadowThread forked = se.getNewThread();
 
 		synchronized (mylog) {
-			int id  = idgen.nextInt(999999);
+			
 			try {
-			mylog.write((td.getTid()+1) + ",SIG," + id + ",nil," + id+"\n");
-			mylog.write((forked.getTid()+1) + ",WT," + id + ",nil," + id+"\n");
+				SigCounter++;
+				id = SigCounter;
+				mylog.write((td.getTid()+1) + ",SIG," + id + ",nil," + id+"\n");
+				mylog.write((forked.getTid()+1) + ",WT," + id + ",nil," + id+"\n");
 			} catch (Exception e) {
-			System.out.println("fuuu off!");
-		}
+				System.out.println("fuuu off!");
+			}
 			//mylog.flush();
 		}
 
@@ -508,8 +508,9 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		final ShadowThread joinedThread = je.getJoiningThread();
 
 		synchronized (mylog) {
-			int id  = idgen.nextInt(999999);
 			try {
+				SigCounter++;
+				id = SigCounter;
 				mylog.write((currentThread.getTid()+1) + ",WT," + id + ",nil," + id+"\n");
 				mylog.write((joinedThread.getTid()+1) + ",SIG," + id + ",nil," + id+"\n");
 			} catch (Exception e) {

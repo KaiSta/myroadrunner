@@ -48,6 +48,7 @@ public class VectorClockPair implements ShadowVar {
 	private static Counter VectorClockPairs = new Counter("VectorClock", "Pair Objects");
 
 	public int Identity = 0;
+	public int LastThread = 0;
 
 	public VectorClockPair(VectorClock vc) {
 		rd = new VectorClock(vc);
