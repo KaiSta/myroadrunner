@@ -88,6 +88,10 @@ import acme.util.decorations.NullDefault;
 import acme.util.io.XMLWriter;
 import acme.util.option.CommandLine;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 /*
  * A revised FastTrack Tool.  This makes several improvements over the original:
  *   - Simpler synchronization scheme for VarStates.  (The old optimistic scheme
