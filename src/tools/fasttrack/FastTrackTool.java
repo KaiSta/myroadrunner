@@ -347,7 +347,7 @@ public class FastTrackTool extends Tool implements BarrierListener<FTBarrierStat
 				synchronized (mylog) {
 					++AccessCounter;
 					try {
-						mylog.write((st.getTid()+1) + ",WR," +  sx.Idendity + "," +  s + "," + AccessCounter+"\n");
+						mylog.write((st.getTid()+1) + ",WR," +  sx.Idendity + "," +  event.getAccessInfo().getLoc().toString(); + "," + AccessCounter+"\n");
 					} catch (Exception e) {
 						System.out.println("bad!");
 					}
@@ -357,7 +357,7 @@ public class FastTrackTool extends Tool implements BarrierListener<FTBarrierStat
 				synchronized (mylog) {
 					++AccessCounter;
 					try {
-						mylog.write((st.getTid()+1) + ",RD," +  sx.Idendity + "," +  s + "," + AccessCounter+"\n");
+						mylog.write((st.getTid()+1) + ",RD," +  sx.Idendity + "," +  event.getAccessInfo().getLoc().toString(); + "," + AccessCounter+"\n");
 					} catch (Exception e) {
 						System.out.println("bad!");
 					}
