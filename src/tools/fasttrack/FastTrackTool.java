@@ -127,9 +127,6 @@ public class FastTrackTool extends Tool implements BarrierListener<FTBarrierStat
 	private Integer AccessCounter = new Integer(0);
 	private Integer LockCounter  = new Integer(0);
 	private Integer SigCounter = new Integer(0);
-	private Random idgen = new Random(); 
-	private HashMap hm = new HashMap();
-	private Integer locCount = new Integer(0);
 
 	// guarded by classInitTime
 	public static final Decoration<ClassInfo,VectorClock> classInitTime = MetaDataInfoMaps.getClasses().makeDecoration("FastTrack:ClassInitTime", Type.MULTIPLE, 
