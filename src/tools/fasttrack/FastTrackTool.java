@@ -274,7 +274,7 @@ public class FastTrackTool extends Tool implements BarrierListener<FTBarrierStat
 		synchronized (mylog) {
 			++LockCounter;
 			try {
-				mylog.write((currentThread.getTid()+1) + ",LK," +  (shadowLock.hashCode()+1) + ",nil," + LockCounter +"\n");
+				mylog.write((st.getTid()+1) + ",LK," +  (lockV.getPeer().hashCode()+1) + ",nil," + LockCounter +"\n");
 			} catch (Exception e) {
 				System.out.println("bad!");
 			}
@@ -290,14 +290,14 @@ public class FastTrackTool extends Tool implements BarrierListener<FTBarrierStat
 	public void release(final ReleaseEvent event) {
 		final ShadowThread st = event.getThread();
 		final VectorClock tV = ts_get_V(st);
-		final VectorClock lockV = getV(event.getLock());
+		final FTLockState lockV = getV(event.getLock());
 
 		lockV.max(tV);
 		incEpochAndCV(st, event.getInfo());
 
 		synchronized (mylog) {
 				try {
-					mylog.write((currentThread.getTid()+1) + ",UK," +  (shadowLock.hashCode()+1) + ",nil,0\n");
+					mylog.write((st.getTid()+1) + ",UK," +  (lockV.getPeer().hashCode()+1) + ",nil,0\n");
 				} catch (Exception e) {
 					System.out.println("bad!");
 				}
@@ -346,7 +346,7 @@ public class FastTrackTool extends Tool implements BarrierListener<FTBarrierStat
 			synchronized (mylog) {
 				++AccessCounter;
 				try {
-					mylog.write((currentThread.getTid()+1) + ",WR," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
+					mylog.write((st.getTid()+1) + ",WR," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
 				} catch (Exception e) {
 					System.out.println("bad!");
 				}

@@ -241,31 +241,31 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 				hm.put(s, loc);
 			}
 			if (fae.isWrite()) {
-				synchronized (mylog) {
-					p.LastThread = currentThread.getTid()+1;
-					++AccessCounter;
-					try {				
-						mylog.write((currentThread.getTid()+1) + ",AWR," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
-					} catch (Exception e) {
-						System.out.println("bad!");
-					}
-				//mylog.write("WRITE,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
-					//mylog.flush();
-				}
+				// synchronized (mylog) {
+				// 	p.LastThread = currentThread.getTid()+1;
+				// 	++AccessCounter;
+				// 	try {				
+				// 		mylog.write((currentThread.getTid()+1) + ",AWR," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
+				// 	} catch (Exception e) {
+				// 		System.out.println("bad!");
+				// 	}
+				// //mylog.write("WRITE,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
+				// 	//mylog.flush();
+				// }
 				p.rd.max(get(currentThread));
 				tick(td); 			
 			} else {
-				synchronized (mylog) {
-					p.LastThread = currentThread.getTid()+1;
-					++AccessCounter;
-					try {
-						mylog.write((currentThread.getTid()+1) + ",ARD," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
-					} catch (Exception e) {
-						System.out.println("bad!");
-					}
-				//mylog.write("WRITE,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
-					//mylog.flush();
-				}
+				// synchronized (mylog) {
+				// 	p.LastThread = currentThread.getTid()+1;
+				// 	++AccessCounter;
+				// 	try {
+				// 		mylog.write((currentThread.getTid()+1) + ",ARD," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
+				// 	} catch (Exception e) {
+				// 		System.out.println("bad!");
+				// 	}
+				// //mylog.write("WRITE,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
+				// 	//mylog.flush();
+				// }
 				synchronized(p.rd) {
 					get(currentThread).max(p.rd);
 				}
