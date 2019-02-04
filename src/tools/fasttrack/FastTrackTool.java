@@ -229,6 +229,7 @@ public class FastTrackTool extends Tool implements BarrierListener<FTBarrierStat
 		return volatileVs.get(ld);
 	}
 
+	private Integer identitycounter = new Integer(0);
 
 	@Override
 	public ShadowVar makeShadowVar(final AccessEvent event) {
@@ -238,7 +239,11 @@ public class FastTrackTool extends Tool implements BarrierListener<FTBarrierStat
 			volV.max(ts_get_V(st));
 			return super.makeShadowVar(event);
 		} else {
-			return new FTVarState(event.isWrite(), ts_get_E(event.getThread()));
+			synchronized (identitycounter) {
+				identitycounter++;
+				return new FTVarState(event.isWrite(), ts_get_E(event.getThread()), identitycounter);
+			}
+			
 		}
 	}
 
@@ -346,7 +351,7 @@ public class FastTrackTool extends Tool implements BarrierListener<FTBarrierStat
 			synchronized (mylog) {
 				++AccessCounter;
 				try {
-					mylog.write((st.getTid()+1) + ",WR," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
+					mylog.write((st.getTid()+1) + ",WR," +  sx.Identity + "," +  s + "," + AccessCounter+"\n");
 				} catch (Exception e) {
 					System.out.println("bad!");
 				}
@@ -631,8 +636,8 @@ public class FastTrackTool extends Tool implements BarrierListener<FTBarrierStat
 			try {
 				SigCounter++;
 				Integer id = SigCounter;
-				mylog.write((td.getTid()+1) + ",SIG," + id + ",nil," + id+"\n");
-				mylog.write((forked.getTid()+1) + ",WT," + id + ",nil," + id+"\n");
+				mylog.write((st.getTid()+1) + ",SIG," + id + ",nil," + id+"\n");
+				mylog.write((su.getTid()+1) + ",WT," + id + ",nil," + id+"\n");
 			} catch (Exception e) {
 				System.out.println("bad!");
 			}
@@ -672,8 +677,8 @@ public class FastTrackTool extends Tool implements BarrierListener<FTBarrierStat
 			try {
 				SigCounter++;
 				Integer id = SigCounter;
-				mylog.write((currentThread.getTid()+1) + ",WT," + id + ",nil," + id+"\n");
-				mylog.write((joinedThread.getTid()+1) + ",SIG," + id + ",nil," + id+"\n");
+				mylog.write((st.getTid()+1) + ",WT," + id + ",nil," + id+"\n");
+				mylog.write((su.getTid()+1) + ",SIG," + id + ",nil," + id+"\n");
 			} catch (Exception e) {
 				System.out.println("bad!");
 			}

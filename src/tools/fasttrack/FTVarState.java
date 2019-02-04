@@ -64,7 +64,9 @@ public class FTVarState extends VectorClock implements ShadowVar {
 	protected FTVarState() {
 	}
 	
-	public FTVarState(boolean isWrite, int/*epoch*/ epoch) {
+	public Integer Idendity;
+	
+	public FTVarState(boolean isWrite, int/*epoch*/ epoch, Integer id) {
 		if (isWrite) {
 			R = Epoch.ZERO;
 			W = epoch; 
@@ -72,6 +74,7 @@ public class FTVarState extends VectorClock implements ShadowVar {
 			W = Epoch.ZERO;
 			R = epoch; 
 		}		
+		Idendity = new Integer(id);
 	}
 
 	@Override
