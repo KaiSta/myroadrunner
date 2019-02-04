@@ -124,9 +124,9 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 
 		try {
 			//mylog = new PrintWriter("my.log", "UTF-8");
-                       mylog = new BufferedWriter(new FileWriter("my.log"), 32768);
+            mylog = new BufferedWriter(new FileWriter("my.log"), 32768);
 		} catch (Exception e) {
-			System.out.println("fuuu off!");
+			System.out.println("bad!");
 		}
 
 	}
@@ -189,7 +189,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 					mylog.write((currentThread.getTid()+1) + ",LK," +  (shadowLock.hashCode()+1) + ",nil," + LockCounter +"\n");
 					//mylog.write((currentThread.getTid()+1) + ",LK," +  (shadowLock.hashCode()+1) + ",nil," + LockCounter+"\n");
 				} catch (Exception e) {
-					System.out.println("fuuu off!");
+					System.out.println("bad!");
 				}
 				//mylog.flush();
 			}
@@ -212,7 +212,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 						mylog.write((currentThread.getTid()+1) + ",UK," +  (shadowLock.hashCode()+1) + ",nil,0\n");
 					//	mylog.write((currentThread.getTid()+1) + ",UK," +  (shadowLock.hashCode()+1) + ",nil,0\n");
 					} catch (Exception e) {
-						System.out.println("fuuu off!");
+						System.out.println("bad!");
 					}
 				//mylog.flush();
 			}
@@ -247,7 +247,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 					try {				
 						mylog.write((currentThread.getTid()+1) + ",AWR," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
 					} catch (Exception e) {
-						System.out.println("fuuu off!");
+						System.out.println("bad!");
 					}
 				//mylog.write("WRITE,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
 					//mylog.flush();
@@ -261,7 +261,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 					try {
 						mylog.write((currentThread.getTid()+1) + ",ARD," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
 					} catch (Exception e) {
-						System.out.println("fuuu off!");
+						System.out.println("bad!");
 					}
 				//mylog.write("WRITE,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
 					//mylog.flush();
@@ -317,7 +317,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 						try {
 							mylog.write((currentThread.getTid()+1) + ",WR," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
 						} catch (Exception e) {
-							System.out.println("fuuu off!");
+							System.out.println("bad!");
 						}
 					}
 				}
@@ -334,7 +334,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 						try {
 							mylog.write((currentThread.getTid()+1) + ",RD," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
 						} catch (Exception e) {
-							System.out.println("fuuu off!");
+							System.out.println("bad!");
 						}
 					//mylog.write("READ,T " +  tid + ",VAR " +  p.Identity + ", LOC " + fae.getAccessInfo().getLoc());
 						//mylog.flush();
@@ -450,7 +450,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 				mylog.write((td.getTid()+1) + ",SIG," + id + ",nil," + id+"\n");
 				mylog.write((forked.getTid()+1) + ",WT," + id + ",nil," + id+"\n");
 			} catch (Exception e) {
-				System.out.println("fuuu off!");
+				System.out.println("bad!");
 			}
 			//mylog.flush();
 		}
@@ -470,7 +470,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		// 	// try {
 		// 	// mylog.write((we.getThread().getTid()+1) + ",SIG," + we.getLock().hashCode() + ",nil," + we.getLock().hashCode()+"\n");
 		// 	// } catch (Exception e) {
-		// 	// System.out.println("fuuu off!");
+		// 	// System.out.println("bad!");
 		// }
 			//mylog.flush();
 		//}
@@ -488,7 +488,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		// 	// try {
 		// 	// mylog.write((we.getThread().getTid()+1) + ",WT," + we.getLock().hashCode() + ",nil," + we.getLock().hashCode()+"\n");
 		// 	// } catch (Exception e) {
-		// 	// System.out.println("fuuu off!");
+		// 	// System.out.println("bad!");
 		// }
 			//mylog.flush();
 		//}
@@ -521,7 +521,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 				mylog.write((currentThread.getTid()+1) + ",WT," + id + ",nil," + id+"\n");
 				mylog.write((joinedThread.getTid()+1) + ",SIG," + id + ",nil," + id+"\n");
 			} catch (Exception e) {
-				System.out.println("fuuu off!");
+				System.out.println("bad!");
 			}
 			//mylog.flush();
 		}
@@ -600,7 +600,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 			// fileLoc.flush();
 			
 		} catch (Exception e) {
-			System.out.println("fuuu off!");
+			System.out.println("bad!");
 		}
 	}
 		//synchronized (maxEpochPerTid) {
