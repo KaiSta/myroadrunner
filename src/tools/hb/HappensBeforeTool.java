@@ -309,7 +309,15 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 
 			if (!p.isShared && p.LastThread != tid) {
 				p.isShared = true;
-				mylog.write(p.lastmsg);
+				synchronized(mylog) {
+					try {
+				
+						mylog.write(p.lastmsg);
+
+					} catch (Exception e) {
+						System.out.println("bad!");
+					}
+				}
 			}
 			
 			if (isWrite) {
