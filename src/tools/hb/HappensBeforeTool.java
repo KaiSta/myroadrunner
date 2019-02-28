@@ -329,7 +329,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 				synchronized(p.wr) { 	
 					p.wr.set(tid, cv.get(tid));
 					synchronized (mylog) {
-						p.LastThread = currentThread.getTid()+1;
+						
 						++AccessCounter;
 						try {
 							if (p.isShared) {
@@ -350,7 +350,7 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 				synchronized(p.rd) { 	
 					p.rd.set(tid, cv.get(tid));
 					synchronized (mylog) {
-						p.LastThread = currentThread.getTid()+1;
+						
 						++AccessCounter;
 						try {
 							if (p.isShared) {
