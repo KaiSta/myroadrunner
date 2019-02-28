@@ -302,6 +302,15 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 				loc = ++locCount;
 				hm.put(s, loc);
 			}
+
+			if (p.LastThread == 0) {
+				p.LastThread = tid; //init
+			}
+
+			if (!p.isShared && p.LastThread != tid) {
+				p.isShared = true;
+				mylog.write(p.lastmsg);
+			}
 			
 			if (isWrite) {
 				
@@ -315,7 +324,11 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 						p.LastThread = currentThread.getTid()+1;
 						++AccessCounter;
 						try {
-							mylog.write((currentThread.getTid()+1) + ",WR," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
+							if (p.isShared) {
+								mylog.write((currentThread.getTid()+1) + ",WR," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
+							} else {
+								p.lastmsg = (currentThread.getTid()+1) + ",WR," +  p.Identity + "," +  s + "," + AccessCounter+"\n";
+							}
 						} catch (Exception e) {
 							System.out.println("bad!");
 						}
@@ -332,7 +345,11 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 						p.LastThread = currentThread.getTid()+1;
 						++AccessCounter;
 						try {
-							mylog.write((currentThread.getTid()+1) + ",RD," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
+							if (p.isShared) {
+								mylog.write((currentThread.getTid()+1) + ",RD," +  p.Identity + "," +  s + "," + AccessCounter+"\n");
+							} else {
+								p.lastmsg = (currentThread.getTid()+1) + ",RD," +  p.Identity + "," +  s + "," + AccessCounter+"\n";
+							}
 						} catch (Exception e) {
 							System.out.println("bad!");
 						}
@@ -352,28 +369,29 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		} 
 	}
 	
-	public static boolean readFastPath(final ShadowVar shadow, final ShadowThread st) {
-		// System.out.println(">>>>>>>>>>>>>>>" + st.getTid()+ "--" + shadow.getClass().getName());
-		// System.out.println(">>>>>>>>>>>>>>>" +shadow.toString());
+	// public static boolean readFastPath(final ShadowVar shadow, final ShadowThread st) {
+	// 	// System.out.println(">>>>>>>>>>>>>>>" + st.getTid()+ "--" + shadow.getClass().getName());
+	// 	// System.out.println(">>>>>>>>>>>>>>>" +shadow.toString());
 		
-		if (shadow instanceof VectorClockPair) {
-			VectorClockPair p = (VectorClockPair)shadow;
-			if (p.LastThread == st.getTid()) {
-				return true;
-			}
-		}
-		return false;
-	}
+	// 	if (shadow instanceof VectorClockPair) {
+	// 		VectorClockPair p = (VectorClockPair)shadow;
+
+	// 		if (p.LastThread != st.getTid()) {
+	// 			p.isShared = true;
+	// 		}
+	// 	}
+	// 	return false;
+	// }
 	
-	public static boolean writeFastPath(final ShadowVar shadow, final ShadowThread st) {
-		if (shadow instanceof VectorClockPair) {
-			VectorClockPair p = (VectorClockPair)shadow;
-			if (p.LastThread == st.getTid()) {
-				return true;
-			}
-		}
-		return false;
-	}
+	// public static boolean writeFastPath(final ShadowVar shadow, final ShadowThread st) {
+	// 	if (shadow instanceof VectorClockPair) {
+	// 		VectorClockPair p = (VectorClockPair)shadow;
+	// 		if (p.LastThread == st.getTid()) {
+	// 			return true;
+	// 		}
+	// 	}
+	// 	return false;
+	// }
 
 
 	private boolean checkAfter(VectorClock prev, String prevOp, ShadowThread currentThread, String curOp, 
