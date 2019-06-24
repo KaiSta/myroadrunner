@@ -1,0 +1,29 @@
+1. Jar entpacken:
+
+jar xf myFile.jar
+
+2. META-INF/MANIFEST.MF anpassen.
+
+Fuer moldyn wars: 
+Main-Class: JGFMolDynBenchSizeB 
+hinzufuegen. JGF... ist dabei die klasse in der die main funktion drin ist.
+
+3. wieder zur jar packen:
+
+Open a command prompt.
+
+Go to the directory where you have your .java files
+
+Create a directory build
+
+Run java compilation from the command line
+
+javac -d ./build *.java
+
+if there are no errors, in the build directory you should have your class tree
+
+move to the build directory and do a
+
+jar cvf YourJar.jar *
+
+4. Aus der original Jar die fehlenden Dateien rueber kopieren. Fuer moldyn waren es die angepasste META-INF/MANIFEST.MF, jgfutil und die eigentliche JGFMoldynBenchSizeB Datei
