@@ -40,8 +40,12 @@ package test;
 
 
 public class Test extends Thread{
+        static Integer prebranch = new Integer(1);
+        static Integer postbranch = new Integer(2);
 
-    static final int ITERS = 2;
+        static int flag = 1;
+
+        static final int ITERS = 2;
 
 	static int y;
 	static int x;
@@ -69,6 +73,14 @@ public class Test extends Thread{
 	}
 
 	public static void main(String args[]) throws Exception {
+               if (flag > 0) {
+                 prebranch = 1;
+                  
+                 flag = 2;
+
+                 postbranch = 2;
+
+               }
 		final Test t1 = new Test();
 		final Test t2 = new Test();
 		final Test t3 = new Test();
@@ -78,6 +90,13 @@ public class Test extends Thread{
 		t1.join();
 		t2.join();
 		t3.join();
+
+                if (flag > 0) {
+                  prebranch = 1;
+                  flag = 3;
+                  postbranch = 2;
+                }
+
 		System.out.println("Is it " + (ITERS * 3) + "? " + y);
 	}
 }

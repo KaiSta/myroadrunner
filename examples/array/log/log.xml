@@ -1,5 +1,5 @@
 <entry>
-  <date> Mon Jan 28 17:05:25 UTC 2019 </date> 
+  <date> Fri Mar 15 15:28:22 UTC 2019 </date> 
   <mode> FAST </mode> 
   <timeout> NO </timeout> 
   <options>
@@ -78,14 +78,14 @@
     <name> java.class.path </name>     <value> .:/home/kaist/repos/myroadrunner/build/jar/rragent.jar </value> 
     <name> os.name </name>             <value> Linux </value> 
     <name> os.arch </name>             <value> amd64 </value> 
-    <name> os.version </name>          <value> 4.15.0-43-generic </value> 
+    <name> os.version </name>          <value> 4.15.0-45-generic </value> 
     <name> user.name </name>           <value> kaist </value> 
     <name> user.dir </name>            <value> /home/kaist/repos/myroadrunner/examples/array </value> 
     <availableProcs> 16 </availableProcs> 
     <memCommitted> 1963 </memCommitted> 
     <memUsed> 134 </memUsed> 
     <memTotal> 1963 </memTotal> 
-    <compileTime> 2440 </compileTime> 
+    <compileTime> 2436 </compileTime> 
     <gc> <name> PS Scavenge </name> <time> 0 </time> </gc>
     <gc> <name> PS MarkSweep </name> <time> 0 </time> </gc>
   </system>
@@ -113,7 +113,7 @@
     <counter><name> "ShadowThread: Max Live" </name>                     <value> 2 </value> </counter>
     <counter><name> "ShadowThread: getCurrentThread() calls" </name>     <value> 0 </value> </counter>
 
-    <counter><name> "Time: Instrumenter" </name>                         <value> <total>24,0000</total> <count>2</count> <ave>12,0000</ave> </value> </counter>
+    <counter><name> "Time: Instrumenter" </name>                         <value> <total>23,0000</total> <count>2</count> <ave>11,5000</ave> </value> </counter>
 
     <counter><name> "VectorClock: Pair Objects" </name>                  <value> 4 </value> </counter>
   </counters>
@@ -145,5 +145,5 @@
   <yikesTotal> 0 </yikesTotal> 
   <failed> false </failed> 
   <failedReason>  </failedReason> 
-  <time> 491 </time> 
+  <time> 487 </time> 
 </entry>

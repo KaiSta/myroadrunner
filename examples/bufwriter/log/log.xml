@@ -1,5 +1,5 @@
 <entry>
-  <date> Mon Jan 28 17:05:57 UTC 2019 </date> 
+  <date> Fri Mar 15 15:29:46 UTC 2019 </date> 
   <mode> FAST </mode> 
   <timeout> NO </timeout> 
   <options>
@@ -78,14 +78,14 @@
     <name> java.class.path </name>     <value> .:/home/kaist/repos/myroadrunner/build/jar/rragent.jar </value> 
     <name> os.name </name>             <value> Linux </value> 
     <name> os.arch </name>             <value> amd64 </value> 
-    <name> os.version </name>          <value> 4.15.0-43-generic </value> 
+    <name> os.version </name>          <value> 4.15.0-45-generic </value> 
     <name> user.name </name>           <value> kaist </value> 
     <name> user.dir </name>            <value> /home/kaist/repos/myroadrunner/examples/bufwriter </value> 
     <availableProcs> 16 </availableProcs> 
     <memCommitted> 1963 </memCommitted> 
     <memUsed> 195 </memUsed> 
     <memTotal> 1963 </memTotal> 
-    <compileTime> 2574 </compileTime> 
+    <compileTime> 2647 </compileTime> 
     <gc> <name> PS Scavenge </name> <time> 0 </time> </gc>
     <gc> <name> PS MarkSweep </name> <time> 0 </time> </gc>
   </system>
@@ -113,11 +113,12 @@
     <counter><name> "ShadowThread: Max Live" </name>                     <value> 5 </value> </counter>
     <counter><name> "ShadowThread: getCurrentThread() calls" </name>     <value> 0 </value> </counter>
 
-    <counter><name> "Time: Instrumenter" </name>                         <value> <total>58,0000</total> <count>4</count> <ave>14,5000</ave> </value> </counter>
+    <counter><name> "Time: Instrumenter" </name>                         <value> <total>51,0000</total> <count>4</count> <ave>12,7500</ave> </value> </counter>
 
     <counter><name> "VectorClock: Pair Objects" </name>                  <value> 24 </value> </counter>
   </counters>
   <yikes>
+    <message> SafeFieldUpdater: Concurrent update </message> <count> 1 </count> 
   </yikes>
   <tool>
     <name> tools.hb.HappensBeforeTool </name> 
@@ -151,8 +152,8 @@
     <errorType> <name> HappensBefore </name> <count> 2 </count> </errorType>
   </errorCountPerErrorType>
   <warningsTotal> 0 </warningsTotal> 
-  <yikesTotal> 0 </yikesTotal> 
+  <yikesTotal> 1 </yikesTotal> 
   <failed> false </failed> 
   <failedReason>  </failedReason> 
-  <time> 462 </time> 
+  <time> 448 </time> 
 </entry>
