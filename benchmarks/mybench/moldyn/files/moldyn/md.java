@@ -178,12 +178,9 @@ class mdRunner implements Runnable {
     zvelocity = 0.0;
 
     ijk = 0;
-    for (lg=0; lg<=1; lg++) {
-      ++tracer.PREBRANCH;
+    for (lg=0; lg<=1; lg++) {    
      for (i=0; i<mm; i++) {
-       ++tracer.PREBRANCH;
       for (j=0; j<mm; j++) {
-        ++tracer.PREBRANCH;
        for (k=0; k<mm; k++) {
          ++tracer.PREBRANCH;
         one[ijk] = new particle((i*a+lg*a*0.5),(j*a+lg*a*0.5),(k*a),
@@ -191,19 +188,13 @@ class mdRunner implements Runnable {
         ijk = ijk + 1;
         ++tracer.POSTBRANCH;
        }
-       ++tracer.POSTBRANCH;
       }
-      ++tracer.POSTBRANCH;
      }
-     ++tracer.POSTBRANCH;
     }
     ++tracer.FENCE;
     for (lg=1; lg<=2; lg++) {
-      ++tracer.PREBRANCH;
      for (i=0; i<mm; i++) {
-       ++tracer.PREBRANCH;
       for (j=0; j<mm; j++) {
-        ++tracer.PREBRANCH;
        for (k=0; k<mm; k++) {
          ++tracer.PREBRANCH;
         one[ijk] = new particle((i*a+(2-lg)*a*0.5),(j*a+(lg-1)*a*0.5),
@@ -211,11 +202,8 @@ class mdRunner implements Runnable {
         ijk = ijk + 1;
         ++tracer.POSTBRANCH;
        }
-       ++tracer.POSTBRANCH;
       }
-      ++tracer.POSTBRANCH;
      }
-     ++tracer.POSTBRANCH;
     }
     ++tracer.FENCE;
     
@@ -351,13 +339,11 @@ class mdRunner implements Runnable {
     if(id==0) {
       ++tracer.PREBRANCH;
      for(j=0;j<3;j++) {
-       ++tracer.PREBRANCH;
       for (i=0;i<mdsize;i++) {
         ++tracer.PREBRANCH;
         sh_force[j][i] = 0.0;
         ++tracer.POSTBRANCH;
       }
-      ++tracer.POSTBRANCH;
      }
      ++tracer.POSTBRANCH;
     }
@@ -391,17 +377,13 @@ class mdRunner implements Runnable {
    if(id == 0) {
      ++tracer.PREBRANCH;
     for(int k=0;k<3;k++) {
-      ++tracer.PREBRANCH;
      for(i=0;i<mdsize;i++) {
-       ++tracer.PREBRANCH;
        for(j=0;j<JGFMolDynBench.nthreads;j++) {
          ++tracer.PREBRANCH;
         sh_force[k][i] += sh_force2[k][j][i];
         ++tracer.POSTBRANCH;
        }
-       ++tracer.POSTBRANCH;
      }
-     ++tracer.POSTBRANCH;
     }
     ++tracer.FENCE;
     ++tracer.POSTBRANCH;
@@ -410,17 +392,13 @@ class mdRunner implements Runnable {
    if(id == 0) {
      ++tracer.PREBRANCH;
     for(int k=0;k<3;k++) {
-      ++tracer.PREBRANCH;
      for(i=0;i<mdsize;i++) {
-       ++tracer.PREBRANCH;
        for(j=0;j<JGFMolDynBench.nthreads;j++) {
          ++tracer.PREBRANCH;
         sh_force2[k][j][i] = 0.0;
         ++tracer.POSTBRANCH;
        }
-       ++tracer.POSTBRANCH;
      }
-     ++tracer.POSTBRANCH;
     }
     ++tracer.FENCE;
     ++tracer.POSTBRANCH;
@@ -457,13 +435,11 @@ class mdRunner implements Runnable {
     if(id == 0) {
       ++tracer.PREBRANCH;
       for (j=0;j<3;j++) {
-        ++tracer.PREBRANCH;
         for (i=0;i<mdsize;i++) {
           ++tracer.PREBRANCH;
           sh_force[j][i] = sh_force[j][i] * hsq2;
           ++tracer.POSTBRANCH;
         }
-        ++tracer.POSTBRANCH;
       }
       ++tracer.FENCE;
       ++tracer.POSTBRANCH;

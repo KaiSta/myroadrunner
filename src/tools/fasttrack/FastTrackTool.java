@@ -147,7 +147,7 @@ public class FastTrackTool extends Tool implements BarrierListener<FTBarrierStat
 
 		try {
 			//mylog = new PrintWriter("my.log", "UTF-8");
-            mylog = new BufferedWriter(new FileWriter("my.log"), 32768);
+            mylog = new BufferedWriter(new FileWriter("/mnt/my.log"), 32768);
 		} catch (Exception e) {
 			System.out.println("bad!");
 		}
