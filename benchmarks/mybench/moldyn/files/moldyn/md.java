@@ -31,8 +31,13 @@ import java.util.*;
 import java.text.NumberFormat;
 import jgfutil.*;
 
-public class md {
+class tracer {
+  public static int PREBRANCH = 0;
+  public static int POSTBRANCH = 0;
+  public static int FENCE = 0;
+}
 
+public class md {
   public static final int ITERS = 100;
   public static final double LENGTH = 50e-10;
   public static final double m = 4.0026;
@@ -81,21 +86,26 @@ public class md {
     Barrier br= new TournamentBarrier(JGFMolDynBench.nthreads);
 
     for(int i=1;i<JGFMolDynBench.nthreads;i++) {
+      ++tracer.PREBRANCH;
       thobjects[i] = new mdRunner(i,mm,sh_force,sh_force2,br);
       th[i] = new Thread(thobjects[i]);
       th[i].start();
+      ++tracer.POSTBRANCH;
     }
+    ++tracer.FENCE;
 
     thobjects[0] = new mdRunner(0,mm,sh_force,sh_force2,br);
     thobjects[0].run();
 
     for(int i=1;i<JGFMolDynBench.nthreads;i++) {
+      ++tracer.PREBRANCH;
       try {
         th[i].join();
       }
       catch (InterruptedException e) {}
+      ++tracer.POSTBRANCH;
     }
-
+    ++tracer.FENCE;
   }
 
 
@@ -169,28 +179,45 @@ class mdRunner implements Runnable {
 
     ijk = 0;
     for (lg=0; lg<=1; lg++) {
+      ++tracer.PREBRANCH;
      for (i=0; i<mm; i++) {
+       ++tracer.PREBRANCH;
       for (j=0; j<mm; j++) {
+        ++tracer.PREBRANCH;
        for (k=0; k<mm; k++) {
+         ++tracer.PREBRANCH;
         one[ijk] = new particle((i*a+lg*a*0.5),(j*a+lg*a*0.5),(k*a),
         xvelocity,yvelocity,zvelocity,sh_force,sh_force2,id,this);
         ijk = ijk + 1;
+        ++tracer.POSTBRANCH;
        }
+       ++tracer.POSTBRANCH;
       }
+      ++tracer.POSTBRANCH;
      }
+     ++tracer.POSTBRANCH;
     }
+    ++tracer.FENCE;
     for (lg=1; lg<=2; lg++) {
+      ++tracer.PREBRANCH;
      for (i=0; i<mm; i++) {
+       ++tracer.PREBRANCH;
       for (j=0; j<mm; j++) {
+        ++tracer.PREBRANCH;
        for (k=0; k<mm; k++) {
+         ++tracer.PREBRANCH;
         one[ijk] = new particle((i*a+(2-lg)*a*0.5),(j*a+(lg-1)*a*0.5),
         (k*a+a*0.5),xvelocity,yvelocity,zvelocity,sh_force,sh_force2,id,this);
         ijk = ijk + 1;
+        ++tracer.POSTBRANCH;
        }
+       ++tracer.POSTBRANCH;
       }
+      ++tracer.POSTBRANCH;
      }
+     ++tracer.POSTBRANCH;
     }
-
+    ++tracer.FENCE;
     
 /* Initialise velocities */
 
@@ -201,23 +228,30 @@ class mdRunner implements Runnable {
     randnum = new random(iseed,v1,v2);
 
     for (i=0; i<mdsize; i+=2) {
+      ++tracer.PREBRANCH;
      r  = randnum.seed();
      one[i].xvelocity = r*randnum.v1;
      one[i+1].xvelocity  = r*randnum.v2;
+     ++tracer.POSTBRANCH;
     }
-
+    ++tracer.FENCE;
     for (i=0; i<mdsize; i+=2) {
+      ++tracer.PREBRANCH;
      r  = randnum.seed();
      one[i].yvelocity = r*randnum.v1;
      one[i+1].yvelocity  = r*randnum.v2;
+     ++tracer.POSTBRANCH;
     }
+    ++tracer.FENCE;
 
     for (i=0; i<mdsize; i+=2) {
+      ++tracer.PREBRANCH;
      r  = randnum.seed();
      one[i].zvelocity = r*randnum.v1;
      one[i+1].zvelocity  = r*randnum.v2;
+     ++tracer.POSTBRANCH;
     }
-
+    ++tracer.FENCE;
 
 /* velocity scaling */
 
@@ -225,55 +259,76 @@ class mdRunner implements Runnable {
     sp = 0.0;
 
     for(i=0;i<mdsize;i++) {
+      ++tracer.PREBRANCH;
      sp = sp + one[i].xvelocity;
+      ++tracer.POSTBRANCH;
     }
+    ++tracer.FENCE;
     sp = sp / mdsize;
 
     for(i=0;i<mdsize;i++) {
+      ++tracer.PREBRANCH;
      one[i].xvelocity = one[i].xvelocity - sp;
      ekin = ekin + one[i].xvelocity*one[i].xvelocity;
+     ++tracer.POSTBRANCH;
     }
+    ++tracer.FENCE;
 
     sp = 0.0;
     for(i=0;i<mdsize;i++) {
+      ++tracer.PREBRANCH;
      sp = sp + one[i].yvelocity;
+     ++tracer.POSTBRANCH;
     }
+    ++tracer.FENCE;
     sp = sp / mdsize;
 
     for(i=0;i<mdsize;i++) {
+      ++tracer.PREBRANCH;
      one[i].yvelocity = one[i].yvelocity - sp;
      ekin = ekin + one[i].yvelocity*one[i].yvelocity;
+     ++tracer.POSTBRANCH;
     }
+    ++tracer.FENCE;
 
 
     sp = 0.0;
     for(i=0;i<mdsize;i++) {
+      ++tracer.PREBRANCH;
      sp = sp + one[i].zvelocity;
+     ++tracer.POSTBRANCH;
     }
+    ++tracer.FENCE;
     sp = sp / mdsize;
 
     for(i=0;i<mdsize;i++) {
+      ++tracer.PREBRANCH;
      one[i].zvelocity = one[i].zvelocity - sp;
      ekin = ekin + one[i].zvelocity*one[i].zvelocity;
+     ++tracer.POSTBRANCH;
     }
-
+    ++tracer.FENCE;
     ts = tscale * ekin;
     sc = h * Math.sqrt(tref/ts);
 
 
     for(i=0;i<mdsize;i++) {
-
+      ++tracer.PREBRANCH;
     one[i].xvelocity = one[i].xvelocity * sc;     
     one[i].yvelocity = one[i].yvelocity * sc;     
     one[i].zvelocity = one[i].zvelocity * sc;     
-
+      ++tracer.POSTBRANCH;
     }
-
+    ++tracer.FENCE;
 
 /* Synchronise threads and start timer before MD simulation */
 
    br.DoBarrier(id);
-   if (id == 0) JGFInstrumentor.startTimer("Section3:MolDyn:Run");
+   if (id == 0) {
+     ++tracer.PREBRANCH;
+     JGFInstrumentor.startTimer("Section3:MolDyn:Run");
+     ++tracer.POSTBRANCH;
+   }
    br.DoBarrier(id);
 
 
@@ -281,23 +336,32 @@ class mdRunner implements Runnable {
 
    move = 0;
    for (move=0;move<movemx;move++) {
-
+    ++tracer.PREBRANCH;
 /* move the particles and update velocities */
 
     for (i=0;i<mdsize;i++) {
-     one[i].domove(side,i);       
+      ++tracer.PREBRANCH;
+     one[i].domove(side,i); 
+     ++tracer.POSTBRANCH;      
     }
-
+    ++tracer.FENCE;
 /* Barrier */
    br.DoBarrier(id);
 
     if(id==0) {
+      ++tracer.PREBRANCH;
      for(j=0;j<3;j++) {
+       ++tracer.PREBRANCH;
       for (i=0;i<mdsize;i++) {
+        ++tracer.PREBRANCH;
         sh_force[j][i] = 0.0;
+        ++tracer.POSTBRANCH;
       }
+      ++tracer.POSTBRANCH;
      }
+     ++tracer.POSTBRANCH;
     }
+    ++tracer.FENCE;
 
     md.epot[id] = 0.0;
     md.vir[id] = 0.0;
@@ -313,8 +377,11 @@ class mdRunner implements Runnable {
    long t = System.currentTimeMillis();
 
     for (i=0+id;i<mdsize;i+=JGFMolDynBench.nthreads) {
+      ++tracer.PREBRANCH;
         one[i].force(side,rcoff,mdsize,i,xx,yy,zz); 
+      ++tracer.POSTBRANCH;
     }
+    ++tracer.FENCE;
 
 /* Barrier */
    br.DoBarrier(id);
@@ -322,48 +389,84 @@ class mdRunner implements Runnable {
 /* update force arrays */
 
    if(id == 0) {
+     ++tracer.PREBRANCH;
     for(int k=0;k<3;k++) {
+      ++tracer.PREBRANCH;
      for(i=0;i<mdsize;i++) {
+       ++tracer.PREBRANCH;
        for(j=0;j<JGFMolDynBench.nthreads;j++) {
+         ++tracer.PREBRANCH;
         sh_force[k][i] += sh_force2[k][j][i];
+        ++tracer.POSTBRANCH;
        }
+       ++tracer.POSTBRANCH;
      }
+     ++tracer.POSTBRANCH;
     }
+    ++tracer.FENCE;
+    ++tracer.POSTBRANCH;
    }
 
    if(id == 0) {
+     ++tracer.PREBRANCH;
     for(int k=0;k<3;k++) {
+      ++tracer.PREBRANCH;
      for(i=0;i<mdsize;i++) {
+       ++tracer.PREBRANCH;
        for(j=0;j<JGFMolDynBench.nthreads;j++) {
+         ++tracer.PREBRANCH;
         sh_force2[k][j][i] = 0.0;
+        ++tracer.POSTBRANCH;
        }
+       ++tracer.POSTBRANCH;
      }
+     ++tracer.POSTBRANCH;
     }
+    ++tracer.FENCE;
+    ++tracer.POSTBRANCH;
    }
 
    if(id==0) {
+     ++tracer.PREBRANCH;
      for(j=1;j<JGFMolDynBench.nthreads;j++) {
+       ++tracer.PREBRANCH;
        md.epot[0] += md.epot[j];
        md.vir[0] += md.vir[j];
+       ++tracer.POSTBRANCH;
      }
-     for(j=1;j<JGFMolDynBench.nthreads;j++) {       
+     ++tracer.FENCE;
+     for(j=1;j<JGFMolDynBench.nthreads;j++) {  
+       ++tracer.PREBRANCH;     
       md.epot[j] = md.epot[0];
       md.vir[j] = md.vir[0];
+      ++tracer.POSTBRANCH;
      }
+     ++tracer.FENCE;
      for(j=0;j<JGFMolDynBench.nthreads;j++) {
+       ++tracer.PREBRANCH;
       md.interactions += md.interacts[j]; 
+      ++tracer.POSTBRANCH;
      }
+     ++tracer.FENCE;
+     ++tracer.POSTBRANCH;
    }
 
 /* Barrier */
    br.DoBarrier(id);
 
     if(id == 0) {
+      ++tracer.PREBRANCH;
       for (j=0;j<3;j++) {
+        ++tracer.PREBRANCH;
         for (i=0;i<mdsize;i++) {
+          ++tracer.PREBRANCH;
           sh_force[j][i] = sh_force[j][i] * hsq2;
+          ++tracer.POSTBRANCH;
         }
+        ++tracer.POSTBRANCH;
       }
+      ++tracer.FENCE;
+      ++tracer.POSTBRANCH;
     }
 
     sum = 0.0;
@@ -374,8 +477,11 @@ class mdRunner implements Runnable {
 /*scale forces, update velocities */
 
     for (i=0;i<mdsize;i++) {
+      ++tracer.PREBRANCH;
      sum = sum + one[i].mkekin(hsq2,i);  
+      ++tracer.POSTBRANCH;
     }
+    ++tracer.FENCE;
 
     ekin = sum/hsq;
 
@@ -385,26 +491,35 @@ class mdRunner implements Runnable {
 /* average velocity */
 
     for (i=0;i<mdsize;i++) {
+      ++tracer.PREBRANCH;
      velt = one[i].velavg(vaverh,h);
      if(velt > vaverh) { count = count + 1.0; }
-     vel = vel + velt;                    
+     vel = vel + velt;   
+      ++tracer.POSTBRANCH;                 
     }
+    ++tracer.FENCE;
 
     vel = vel / h;
 
 /* temperature scale if required */
 
     if((move < istop) && (((move+1) % irep) == 0)) {
+      ++tracer.PREBRANCH;
      sc = Math.sqrt(tref / (tscale*ekin));
      for (i=0;i<mdsize;i++) {
+       ++tracer.PREBRANCH;
       one[i].dscal(sc,1);
+      ++tracer.POSTBRANCH;
      }
+     ++tracer.FENCE;
      ekin = tref / tscale;
+     ++tracer.POSTBRANCH;
     }
 
 /* sum to get full potential energy and virial */
 
     if(((move+1) % iprint) == 0) {
+      ++tracer.PREBRANCH;
      md.ek[id] = 24.0*ekin;
      md.epot[id] = 4.0*md.epot[id];
      etot = md.ek[id] + md.epot[id];
@@ -412,6 +527,7 @@ class mdRunner implements Runnable {
      pres = den * 16.0 * (ekin - md.vir[id]) / mdsize;
      vel = vel / mdsize; 
      rp = (count / mdsize) * 100.0;
+     ++tracer.POSTBRANCH;
     }
 
    br.DoBarrier(id);
@@ -419,7 +535,11 @@ class mdRunner implements Runnable {
 
 
    br.DoBarrier(id);
-   if (id == 0) JGFInstrumentor.stopTimer("Section3:MolDyn:Run");
+   if (id == 0) {
+     ++tracer.PREBRANCH;
+     JGFInstrumentor.stopTimer("Section3:MolDyn:Run");
+     ++tracer.POSTBRANCH;
+   }
 
  }
 
@@ -460,12 +580,36 @@ class particle {
     ycoord = ycoord + yvelocity + sh_force[1][part_id];
     zcoord = zcoord + zvelocity + sh_force[2][part_id];
 
-    if(xcoord < 0) { xcoord = xcoord + side; } 
-    if(xcoord > side) { xcoord = xcoord - side; }
-    if(ycoord < 0) { ycoord = ycoord + side; }
-    if(ycoord > side) { ycoord = ycoord - side; }
-    if(zcoord < 0) { zcoord = zcoord + side; }
-    if(zcoord > side) { zcoord = zcoord - side; }
+    if(xcoord < 0) { 
+      ++tracer.PREBRANCH;
+      xcoord = xcoord + side; 
+      ++tracer.POSTBRANCH;
+    } 
+    if(xcoord > side) { 
+      ++tracer.PREBRANCH;
+      xcoord = xcoord - side;
+      ++tracer.POSTBRANCH;
+    }
+    if(ycoord < 0) { 
+      ++tracer.PREBRANCH;  
+      ycoord = ycoord + side; 
+      ++tracer.POSTBRANCH;
+    }
+    if(ycoord > side) { 
+      ++tracer.PREBRANCH;  
+      ycoord = ycoord - side; 
+      ++tracer.POSTBRANCH;
+    }
+    if(zcoord < 0) {
+      ++tracer.PREBRANCH;
+       zcoord = zcoord + side; 
+      ++tracer.POSTBRANCH;
+    }
+    if(zcoord > side) { 
+      ++tracer.PREBRANCH;
+      zcoord = zcoord - side; 
+      ++tracer.POSTBRANCH;
+    }
 
     xvelocity = xvelocity + sh_force[0][part_id];
     yvelocity = yvelocity + sh_force[1][part_id];
@@ -490,21 +634,47 @@ class particle {
      fzi = 0.0;
 
       for (int i=x+1;i<mdsize;i++) {
+        ++tracer.PREBRANCH;
         xx = this.xcoord - runner.one[i].xcoord;
         yy = this.ycoord - runner.one[i].ycoord;
         zz = this.zcoord - runner.one[i].zcoord;
 
-        if(xx < (-sideh)) { xx = xx + side; }
-        if(xx > (sideh))  { xx = xx - side; }
-        if(yy < (-sideh)) { yy = yy + side; }
-        if(yy > (sideh))  { yy = yy - side; }
-        if(zz < (-sideh)) { zz = zz + side; }
-        if(zz > (sideh))  { zz = zz - side; }
+        if(xx < (-sideh)) { 
+          ++tracer.PREBRANCH;
+          xx = xx + side; 
+          ++tracer.POSTBRANCH;
+        }
+        if(xx > (sideh))  { 
+          ++tracer.PREBRANCH;  
+          xx = xx - side; 
+          ++tracer.POSTBRANCH;
+        }
+        if(yy < (-sideh)) { 
+          ++tracer.PREBRANCH;  
+          yy = yy + side; 
+          ++tracer.POSTBRANCH;
+        }
+        if(yy > (sideh))  { 
+          ++tracer.PREBRANCH;
+          yy = yy - side; 
+          ++tracer.POSTBRANCH;
+        }
+        if(zz < (-sideh)) { 
+          ++tracer.PREBRANCH;  
+          zz = zz + side; 
+          ++tracer.POSTBRANCH;
+        }
+        if(zz > (sideh))  { 
+          ++tracer.PREBRANCH;  
+          zz = zz - side; 
+          ++tracer.POSTBRANCH;
+        }
 
 
         rd = xx*xx + yy*yy + zz*zz;
 
         if(rd <= rcoffs) {
+          ++tracer.PREBRANCH;
            rrd = 1.0/rd;
            rrd2 = rrd*rrd;
            rrd3 = rrd2*rrd;
@@ -530,6 +700,7 @@ class particle {
            sh_force2[2][id][i] = sh_force2[2][id][i] - forcez;
 
            md.interacts[id]++;
+           ++tracer.POSTBRANCH;
         }
 
      }
@@ -596,7 +767,11 @@ class random {
   int imult=16807;
   int imod = 2147483647;
 
-  if (iseed<=0) { iseed = 1; }
+  if (iseed<=0) { 
+    ++tracer.PREBRANCH;  
+    iseed = 1; 
+    ++tracer.POSTBRANCH;
+  }
 
   is2 = iseed % 32768;
   is1 = (iseed-is2)/32768;
