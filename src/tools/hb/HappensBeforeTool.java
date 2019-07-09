@@ -329,7 +329,6 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 				synchronized(p.wr) { 	
 					p.wr.set(tid, cv.get(tid));
 					synchronized (mylog) {
-						
 						++AccessCounter;
 						try {
 							if (p.isShared) {
@@ -350,7 +349,6 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 				synchronized(p.rd) { 	
 					p.rd.set(tid, cv.get(tid));
 					synchronized (mylog) {
-						
 						++AccessCounter;
 						try {
 							if (p.isShared) {
@@ -377,14 +375,11 @@ public final class HappensBeforeTool extends Tool implements BarrierListener<HBB
 		} 
 	}
 	
-	// public static boolean readFastPath(final ShadowVar shadow, final ShadowThread st) {
-	// 	// System.out.println(">>>>>>>>>>>>>>>" + st.getTid()+ "--" + shadow.getClass().getName());
-	// 	// System.out.println(">>>>>>>>>>>>>>>" +shadow.toString());
-		
+	// public static boolean readFastPath(final ShadowVar shadow, final ShadowThread st) {		
 	// 	if (shadow instanceof VectorClockPair) {
 	// 		VectorClockPair p = (VectorClockPair)shadow;
 
-	// 		if (p.LastThread != st.getTid()) {
+	// 		if (p.LastThread == st.getTid()) {
 	// 			p.isShared = true;
 	// 		}
 	// 	}

@@ -49,7 +49,7 @@ public class VectorClockPair implements ShadowVar {
 
 	public int Identity = 0;
 	public int LastThread = 0;
-	public boolean isShared = true;
+	public boolean isShared = false;
 	public String lastmsg = "";
 
 	public VectorClockPair(VectorClock vc) {
