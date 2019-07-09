@@ -151,7 +151,9 @@ class mdRunner implements Runnable {
     } 
 
     public void run() {
-
+      ++tracer.PREBRANCH;
+      ++tracer.POSTBRANCH;
+      ++tracer.FENCE;
 /* Parameter determination */
 
     mdsize = md.PARTSIZE;
