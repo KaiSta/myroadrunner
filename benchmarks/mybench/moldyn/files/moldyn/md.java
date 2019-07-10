@@ -38,17 +38,17 @@ class tracer {
 
   public static void prebranch() {
     synchronized(PREBRANCH_) {
-      ++PREBRANCH_;
+      // ++PREBRANCH_;
     }
   }
   public static void postbranch() {
     synchronized(POSTBRANCH_) {
-      ++POSTBRANCH_;
+      // ++POSTBRANCH_;
     }
   }
   public static void fence() {
     synchronized(FENCE_) {
-      ++FENCE_;
+      // ++FENCE_;
     }
   }
 }
